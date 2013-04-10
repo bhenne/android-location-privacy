@@ -1,26 +1,42 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Die Klasse LocationPrivacyApplication modeliert eine Anwendung innerhalb des
- * Location-Privacy-Frameworks.
+ * LocationPrivacyApplication models an app in the location privacy framework
  * 
  * @author Christian Kater
  * 
  */
 public class LocationPrivacyApplication implements Parcelable {
 
-	/** User-Id der Anwendung */
+	/** uid an app is running as */
 	private String uid;
-	/** Name der Anwendung */
+	/** app name */
 	private String name;
-	/**Information, ob das Location-Privacy-Framework für diese Anwendung aktiviert ist */
+	/** Is location obfuscation enabled for this app? */
 	private boolean enabled;
-	/** Das verwendete AbstractLocationPrivacyAlgorithm-Objekt für die Anwendung */
+	/** Used AbstractLocationPrivacyAlgorithm object for this app */
 	private AbstractLocationPrivacyAlgorithm algorithm;
-	/**Information, ob das AbstractLocationPrivacyAlgorithm-Objekt der Standardalgorithmus ist */
+	/** Is used AbstractLocationPrivacyAlgorithm the default one? */
 	private boolean defaultAlgorithm;
 
 	public static final Parcelable.Creator<LocationPrivacyApplication> CREATOR = new Creator<LocationPrivacyApplication>() {
@@ -37,11 +53,10 @@ public class LocationPrivacyApplication implements Parcelable {
 	};
 
 	/**
-	 * Instanziert eine neues LocationPrivacyApplication-Objekt.
+	 * Creates new instance of LocationPrivacyApplication
 	 * 
 	 * @param in
-	 *            Parcel-Objekt mit Attributen des
-	 *            LocationPrivacyApplication-Objekt
+	 *            Parcel object with attributes for LocationPrivacyApplication object
 	 */
 	public LocationPrivacyApplication(Parcel in) {
 		uid = in.readString();
@@ -53,19 +68,18 @@ public class LocationPrivacyApplication implements Parcelable {
 	}
 
 	/**
-	 * Instanziert eine neues LocationPrivacyApplication-Objekt.
+	 * Creates new instance of LocationPrivacyApplication
 	 * 
 	 * @param uid
-	 *            User-Id der Anwednung
+	 *            uid an app is running as
 	 * @param name
-	 *            the Name der Anwendung
+	 *            the app name
 	 * @param status
-	 *            the Ist das Location-Privacy-Framework für diese Anwendung
-	 *            aktiviert
+	 *            obfuscation state of this app (enabled or not)
 	 * @param algorithm
-	 *            Algorithmus zur Verschleierung des Standortes
+	 *            selected obfuscation algorithm
 	 * @param defaultAlgorithm
-	 *            Verwendet die Anwendung den Standardalgorithmus
+	 *            does app use default algorithm?
 	 */
 	public LocationPrivacyApplication(String uid, String name, boolean status,
 			AbstractLocationPrivacyAlgorithm algorithm, boolean defaultAlgorithm) {

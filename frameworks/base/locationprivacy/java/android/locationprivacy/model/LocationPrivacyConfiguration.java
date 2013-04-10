@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.model;
 
 import java.util.ArrayList;
@@ -8,32 +25,30 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Die LocationPrivacyConfiguration besteht aus HashMaps mit einen String als
- * Schlüssel und verschiedenen Datentypen als Werte. In den HashMaps werden die
- * Parameter gespeichert, die ein AbstractLocationPrivacyAlgorithm-Objekt zur
- * verschleierung des Standortes benutzt.
+ * The LocationPrivacyConfiguration consists of HashMaps with String keys and
+ * different datatype values. The HashMaps store different configuration
+ * parameters. These are used by an AbstractLocationPrivacyAlgorithm.
  * 
  * @author Christian Kater
  * 
  */
 public class LocationPrivacyConfiguration implements Parcelable {
 
-	/** Integer Parameter */
+	/** Integer parameters */
 	private Map<String, Integer> intValues;
-	/** Double Parameter */
+	/** Double parameters */
 	private Map<String, Double> doubleValues;
-	/** String Parameter */
+	/** String parameters */
 	private Map<String, String> stringValues;
 	/**
-	 * Enum Parameter: Zu jedem Schlüssel wird eine Liste von Strings angegeben,
-	 * von denen der Benutzer einen String auswählen kann.
+	 * Enum parameters: For each key a list of Strings is defined that users can select.
 	 */
 	private Map<String, ArrayList<String>> enumValues;
-	/** Vom Benutzer ausgewählte Strings aus enumValues */
+	/** User-selected Strings from enumValues */
 	private Map<String, String> enumChoosen;
-	/** Koordinaten Parameter */
+	/** Coordinate parameters */
 	private Map<String, Coordinate> coordinateValues;
-	/** Boolean Parameter */
+	/** Boolean parameters */
 	private Map<String, Boolean> booleanValues;
 
 	public static final Parcelable.Creator<LocationPrivacyConfiguration> CREATOR = new Parcelable.Creator<LocationPrivacyConfiguration>() {
@@ -45,21 +60,21 @@ public class LocationPrivacyConfiguration implements Parcelable {
 
 		@Override
 		public LocationPrivacyConfiguration[] newArray(int size) {
-			// TODO Auto-generated method stub
+			// Auto-generated method stub
 			return new LocationPrivacyConfiguration[size];
 		}
 	};
 
 	/**
-	 * Instanziiert eine neues LocationPrivacyConfiguration-Objekt.
+	 * Creates new instance of LocationPrivacyConfiguration
 	 * 
-	 * @param intValues Integer Parameter
-	 * @param doubleValues Double Parameter
-	 * @param stringValues String Parameter
-	 * @param enumValues Enum Parameter
-	 * @param enumChoosen Ausgewählte Enumeinträge
-	 * @param coordinateValues Koordinaten
-	 * @param booleanValues Boolean Parameter
+	 * @param intValues Integer parameters
+	 * @param doubleValues Double parameters
+	 * @param stringValues String parameters
+	 * @param enumValues Enum parameters
+	 * @param enumChoosen Selected Enum values
+	 * @param coordinateValues Coordinates
+	 * @param booleanValues Boolean parameters
 	 */
 	public LocationPrivacyConfiguration(Map<String, Integer> intValues,
 			Map<String, Double> doubleValues, Map<String, String> stringValues,
@@ -78,8 +93,9 @@ public class LocationPrivacyConfiguration implements Parcelable {
 	}
 
 	/**
-	 * LocationPrivacyConfiguration
-	 * @param in Parcel-Objekt, dass die HashMaps beinhaltet
+	 * Creates new instance of LocationPrivacyConfiguration
+     *
+	 * @param in Parcel object containing HashMaps
 	 */
 	public LocationPrivacyConfiguration(Parcel in) {
 		readFromParcel(in);
@@ -324,7 +340,7 @@ public class LocationPrivacyConfiguration implements Parcelable {
 
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return 0;
 	}
 }

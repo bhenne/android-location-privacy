@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.model;
 
 import android.content.Context;
@@ -7,11 +24,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * Abstract class AbstractLocationPrivacyAlgorithm is template for the 
+ * implementation of obfuscation algorithms.
  * 
  * @author Christian Kater
  *
- * Die abstrakte Klasse AbstractLocationPrivacyAlgorithm dient als Vorlage für
- * die Implementierung von Algorithmen zur Verschleierung des Standortes
  */
 public abstract class AbstractLocationPrivacyAlgorithm implements Parcelable {
 
@@ -31,24 +48,24 @@ public abstract class AbstractLocationPrivacyAlgorithm implements Parcelable {
 		}
 	};
 
-	/** Konfiguration des AbstractLocationPrivacyAlgorithm-Objekt. */
+	/** Configuration of AbstractLocationPrivacyAlgorithm */
 	protected LocationPrivacyConfiguration configuration;
 
-	/** Name der Klasse. */
+	/** Name of Class in the location privacy framework */
 	protected String name;
 
-	/** Context, in dem das Objekt ausgeführt wird. */
+	/** Context the object is running in */
 	protected Context context;
 
-	/** Tag für die Verwendung des Logs. */
+	/** Tag used in Logs */
 	protected final String TAG;
 
 	/**
 	 * 
-	 * Instanziiert eine neues AbstractLocationPrivacyAlgorithm-Objekt.
+	 * Creates new instance of AbstractLocationPrivacyAlgorithm
 	 * 
 	 * @param name
-	 *            Name der Klasse innerhalb des Location-Privacy-Framework
+	 *            Name of Class in the location privacy framework
 	 */
 	protected AbstractLocationPrivacyAlgorithm(String name) {
 		this.name = name;
@@ -57,12 +74,12 @@ public abstract class AbstractLocationPrivacyAlgorithm implements Parcelable {
 	}
 
 	/**
-	 * Instanziiert eine neues AbstractLocationPrivacyAlgorithm-Objekt.
+	 * Creates new instance of AbstractLocationPrivacyAlgorithm
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, dass die Konfiguration des Algorithmus enthält.
+	 *            Parcel object containing the configuration of the algorithm
 	 * @param name
-	 *            Name der Klasse innerhalb des Location-Privacy-Framework
+	 *            Name of Class in the location privacy framework
 	 */
 	public AbstractLocationPrivacyAlgorithm(Parcel in, String name) {
 		this.name = name;
@@ -128,7 +145,7 @@ public abstract class AbstractLocationPrivacyAlgorithm implements Parcelable {
 	 * @see android.os.Parcelable#describeContents()
 	 */
 	public int describeContents() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return 0;
 	}
 
@@ -143,37 +160,36 @@ public abstract class AbstractLocationPrivacyAlgorithm implements Parcelable {
 	}
 
 	/**
-	 * Gibt eine neue Instanz der Klasse zurück
+	 * Returns an instance of the class
 	 * 
-	 * @return Instanz der AbstractLocationPrivacyAlgorithm-Klasse
+	 * @return Instance of AbstractLocationPrivacyAlgorithm
 	 */
 	public abstract AbstractLocationPrivacyAlgorithm newInstance();
 
 	/**
-	 * Gibt die Standardkonfiguration zurück. Diese wird dem
-	 * AbstractLocationPrivacyAlgorithm-Objekt zugeordnet, wenn es neu
-	 * Instanziiert wird. Die in dieser Konfiguration definierten Parameter wird
-	 * dem Benutzer in der Oberfläche angezeigt.
+     * Returns the default configuration of the algorithm. It is assigned to
+     * the AbstractLocationPrivacyAlgorithm on instantiation. These values
+     * are default values users may change.
 	 * 
-	 * @return Standardkonfiguration
+	 * @return default configuration
 	 */
 	public abstract LocationPrivacyConfiguration getDefaultConfiguration();
 
 	/**
-	 * Verschleiert die übergebenen Standortdaten.
+	 * obfuscates the original location
 	 * 
 	 * @param location
-	 *            Standort des Endgerätes
-	 * @return Verschleierter Standort
+	 *            original location
+	 * @return obfuscated location
 	 */
 	public abstract Location calculateLocation(Location location);
 
 	/**
-	 * Gibt eine neue Instanz der Klasse zurück.
+	 * Returns an instance of AbstractLocationPrivacyAlgorithm
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, dass die Konfiguration des Algorithmus enthält.
-	 * @return Neue Instanz der Klasse.
+	 *            Parcel object containing the configuration of the algorithm
+	 * @return new instance of AbstractLocationPrivacyAlgorithm
 	 */
 	protected abstract AbstractLocationPrivacyAlgorithm instanceFromParcel(
 			Parcel in);

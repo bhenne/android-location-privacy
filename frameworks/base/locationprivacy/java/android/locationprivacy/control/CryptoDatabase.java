@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.control;
 
 import java.security.NoSuchAlgorithmException;
@@ -28,8 +45,7 @@ import android.os.Bundle;
 import android.util.Base64;
 
 /**
- * Die Klasse CryptoDatabase speichert alle Daten verschlüsselt als Strings in
- * einer SQLitedatenbank.
+ * The CryptoDatabase stores all data as encrypted strings using SQLite
  * 
  * @author Christian Kater
  * 
@@ -49,16 +65,16 @@ public class CryptoDatabase {
 	private Context context;
 
 	/**
-	 * Instanziert eine neues CryptoDatabase-Objekt.
+	 * Creates new instance of CryptoDatabase
 	 * 
 	 * @param password
-	 *            Passwort mit dem die Daten verschlüsselt werden
+	 *            Encryption password
 	 * @param salt
-	 *            Salt der Verschlüsselung
+	 *            Encryption salt
 	 * @param iterationCount
-	 *            Anzahl der Hashvorgänge
+	 *            Encryption iteration count
 	 * @param context
-	 *            Context, in dem die Datenbank gespeichert werden soll.
+	 *            Context the database is stored in
 	 */
 	public CryptoDatabase(String password, String salt, int iterationCount,
 			Context context) {
@@ -71,7 +87,7 @@ public class CryptoDatabase {
 
 	/**
 	 * @see android.database.sqlite.SQLiteDatabase#insert(String, String,
-	 *      ContentValues) Die Einträge von ContentValues werden verschlüsselt.
+	 *      ContentValues) Entries of ContentValues are encrypted
 	 */
 	public long insert(String table, String nullColumnHack, ContentValues values) {
 		return database.insert(table, nullColumnHack,
@@ -88,8 +104,7 @@ public class CryptoDatabase {
 
 	/**
 	 * @see android.database.sqlite.SQLiteDatabase#update(String, ContentValues,
-	 *      String, String[]) Die Einträge von ContentValues werden
-	 *      verschlüsselt.
+	 *      String, String[]) Entries of ContentValues are encrypted
 	 */
 	public int update(String table, ContentValues values, String whereClause,
 			String[] whereArgs) {
@@ -99,14 +114,12 @@ public class CryptoDatabase {
 
 	/**
 	 * @see android.database.sqlite.SQLiteDatabase#query(String, String[],
-	 *      String, String[], String, String, String) Der Parameter groupBy wird
-	 *      ignoriert.
+	 *      String, String[], String, String, String) Parameter groupBy is ignored
 	 */
 	public Cursor query(String table, String[] columns, String selection,
 			String[] selectionArgs, String groupBy, String having,
 			String orderBy) {
-		// groupBy, having und orderBy sind nicht sinnvoll auf verschlüsselten
-		// Daten
+		// groupBy, having and orderBy are not meaningful on encrypted values
 		Cursor cursor = database.query(table, columns, selection,
 				encryptArgs(selectionArgs), null, null, null);
 		return new CryptoCursor(cursor);
@@ -141,11 +154,11 @@ public class CryptoDatabase {
 	}
 
 	/**
-	 * Verschlüsselt den Inhalt des ContValues-Objekt
+	 * Encrypts content of ContValues
 	 * 
 	 * @param values
-	 *            zu verschlüsselndes ContentValues-Objekt
-	 * @return verschlüsselndes ContentValues-Objekt
+	 *            ContentValues to be encrypted
+	 * @return encrypted ContentValues object
 	 */
 	private ContentValues encryptContentValues(ContentValues values) {
 		ContentValues encryptedValues = new ContentValues();
@@ -156,11 +169,11 @@ public class CryptoDatabase {
 	}
 
 	/**
-	 * Verschlüsselt ein Array von Strings.
+	 * Encrypts an Array of Strings
 	 * 
 	 * @param args
-	 *            zu verschlüsselnde Strings
-	 * @return verschlüsseltes String-Array
+	 *            Strings to be encrypted
+	 * @return encrypted Array of Strings
 	 */
 	private String[] encryptArgs(String[] args) {
 		String[] encryptedArgs = null;
@@ -174,16 +187,15 @@ public class CryptoDatabase {
 	}
 
 	/**
-	 * Erzeugt aus Passwort, Salt und Anzahl der Hashvorgänge ein Secret Key mit
-	 * dem die Daten verschlüsselt und entschlüsselt werden.
+     * Generates secret key from password, salt and iteration count
 	 * 
 	 * @param password
 	 *            Passwort
 	 * @param salt
 	 *            Salt
 	 * @param iterationCount
-	 *            Anzahl der Hashvorgänge
-	 * @return SecretKey-Objekt
+	 *            Interation count
+	 * @return SecretKey object
 	 */
 	private SecretKey generateKey(String password, String salt,
 			int iterationCount) {
@@ -193,21 +205,21 @@ public class CryptoDatabase {
 			return keyFactory.generateSecret(new PBEKeySpec(password
 					.toCharArray(), salt.getBytes(), iterationCount, 128));
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	/**
-	 * Verschlüsselt einen String.
+	 * Encrypts a String
 	 * 
 	 * @param value
-	 *            zu verschlüsselnder String
-	 * @return the verschlüsselter String
+	 *            String to be encrypted
+	 * @return encrypted String
 	 */
 	private String encrypt(String value) {
 
@@ -226,11 +238,11 @@ public class CryptoDatabase {
 	}
 
 	/**
-	 * Entschlüsselt einen String.
+	 * Decrypts a String
 	 * 
 	 * @param value
-	 *            zu entschlüsselnder String
-	 * @return the entschlüsselter String
+	 *            String to be decrypted
+	 * @return decrypted String
 	 */
 	private String decrypt(String value) {
 		try {
@@ -246,9 +258,11 @@ public class CryptoDatabase {
 	}
 
 	/**
-	 * Die Klasse CryptoCursor beinhaltet die verschlüsselten Daten eine
-	 * Select-Anfrage auf die Datenbank. Bei Zugriff auf die Daten werden diese
-	 * entschlüsselt zurückgegeben.
+	 * The CryptoCursor contains the encrypted result of a SELECT query.
+     * Data is decrypted on access.
+     *
+     * @author Christian Kater
+     *
 	 */
 	private class CryptoCursor implements Cursor {
 
@@ -674,28 +688,30 @@ public class CryptoDatabase {
 	}
 
 	/**
-	 * Die Klasse CryptoOpenHelper erzeugt alle für das
-	 * Location-Privacy-Framework notwendigen Tabellen und initialisiert die den
-	 * Standardalgorithmus und den Status.
+	 * CryptoOpenHelper creates erzeugt necessary tables for the location privacy
+     * framework and initilizes the default algorithm and state.
+     *
+     * @author Christian Kater
+     *
 	 */
 	private class CryptoOpenHelper extends SQLiteOpenHelper {
 
 		/**
-		 * Erzeugt ein neues DatabaseOpenHelper-Objekt.
+		 * Creates new instance of DatabaseOpenHelper
 		 * 
 		 * @param context
-		 *            Context in dem die Datenbank existiert.
+		 *            Context the database is stored in
 		 */
 		public CryptoOpenHelper(Context context) {
 			super(context, "privacy.db", null, 1);
 		}
 
 		/**
-		 * Erzeugt alle Tabellen und fügt die Standarddaten ein. Wird
-		 * automatisch aufgerufen, wenn die Datenbank erzeugt wird.
+		 * Creates all tables and inserts default values. 
+         * Is executed on database creation automatically.
 		 * 
 		 * @param db
-		 *            Datenbank in der die Tabellen und Daten erzeugt werden.
+		 *            the Database
 		 */
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL("Create Table APPLICATION(uid text PRIMARY KEY, name text, status text, algorithm text)");
@@ -817,7 +833,7 @@ public class CryptoDatabase {
 		}
 
 		/**
-		 * Löscht alle Tabellen der Datenbnak und ruft onCreate auf.
+		 * Drops all tables of database and calls OnCreate
 		 * 
 		 * @param db
 		 *            the db

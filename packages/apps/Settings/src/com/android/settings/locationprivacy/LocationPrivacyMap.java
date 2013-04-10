@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.settings.locationprivacy;
 
 import java.io.IOException;
@@ -35,8 +52,7 @@ import com.mapquest.android.maps.Overlay;
 import com.mapquest.android.maps.OverlayItem;
 
 /**
- * Die Klasse LocationPrivacyMap stellt eine Karte zur Verfügung, auf der der
- * Benutzer eine Koordinate auswählen kann.
+ * LocationPrivacyMap provides a map to select coordinates
  * 
  * @author Christian Kater
  * 
@@ -48,7 +64,7 @@ public class LocationPrivacyMap extends MapActivity implements OnClickListener {
 	private Button ok;
 	private Button cancel;
 	private MapView map;
-	/** Punkt zum anzeigen der gewählten Koordinate */
+	/** marker showing select coordinates */
 	private AnnotationView annotation;
 	private boolean showPoiInfo = false;
 	private DefaultItemizedOverlay poiOverlay;
@@ -150,11 +166,10 @@ public class LocationPrivacyMap extends MapActivity implements OnClickListener {
 	}
 
 	/**
-	 * Setzt den ausgewählte auf die übergebene Koordinate. Zu dieser Koordinate
-	 * werden die Adressinformationen ermittelt und auf der Karte angezeigt.
-	 * 
+     * Set new coordinates. Address information is gathered and shown on the map.
+	 *
 	 * @param geo
-	 *            neu ausgewählte Koordinate
+	 *            new coordinates
 	 */
 	public void setPOI(GeoPoint geo) {
 		geopoint = geo;
@@ -225,8 +240,7 @@ public class LocationPrivacyMap extends MapActivity implements OnClickListener {
 
 	/**
 	 * @author Nicolas Klein
-	 *         (http://android.foxykeep.com/dev/how-to-add-autocompletion
-	 *         -to-an-edittext)
+	 *         (http://android.foxykeep.com/dev/how-to-add-autocompletion-to-an-edittext)
 	 */
 	private class AutoCompleteAdapter extends ArrayAdapter<Address> implements
 			Filterable {
@@ -252,9 +266,9 @@ public class LocationPrivacyMap extends MapActivity implements OnClickListener {
 
 		/**
 		 * @author Christian Kater
-		 * Formatiert eine Adresse zu der in Deutschland üblichen Schreibweise. 
-		 * @param address Adresse, die formatiert werden soll
-		 * @return Adresse in, in Deutschland üblicher, Schreibweise
+         * format postal address to typical German formatting.
+		 * @param address address to be formated
+		 * @return address as typically used in Germany
 		 */
 		public String adressToString(Address address) {
 			String postal = address.getPostalCode();
@@ -337,14 +351,15 @@ public class LocationPrivacyMap extends MapActivity implements OnClickListener {
 	}
 
 	/**
-	 * Die Klasse TapOverlay reagiert auf einen Klick auf die Karte 
+	 * TapOverlay acts on tapping on the map
+     *
 	 * @author Christian Kater
 	 *
 	 */
 	private class TapOverlay extends Overlay {
 
 		/**
-		 * Aktualisiert die ausgewählte Koordinate. 
+		 * Update selected coordinate
 		 */
 		@Override
 		public boolean onTap(GeoPoint geo, MapView mapView) {

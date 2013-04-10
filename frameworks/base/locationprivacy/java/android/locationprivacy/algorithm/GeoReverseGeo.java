@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.algorithm;
 
 import java.io.IOException;
@@ -16,10 +33,17 @@ import android.os.Parcel;
 import android.util.Log;
 
 /**
- * GeoReverseGeo führt Reverse-Geocoding durch, um die Adresse des Standorts zu
- * ermitteln. Die Adresse wird auf eine, vom Benutzer festgelegte, Weise
- * ungenauer. Zu dieser ungenaueren Adresse wird ein Geocoding durchgeführt. Der
- * dabei entstandene Standort wird zurückgegeben.
+ *
+ * The algorithm GeoReverseGeo first makes reverse geo-coding of the real location
+ * and maps it to a postal address. The address detail is reduced as configured
+ * by the user (for instance to current city, or just removing street number). 
+ * The broad address then is geo-coded again to transform it back to coordinates.
+ * The algorithm maps a real location to the center of the bounding box of a geo
+ * object, such as the current street, postal code region, or city.
+ *
+ * @author Christian Kater
+ * @author Benjamin Henne
+ *
  */
 public class GeoReverseGeo extends AbstractLocationPrivacyAlgorithm {
 
@@ -27,7 +51,7 @@ public class GeoReverseGeo extends AbstractLocationPrivacyAlgorithm {
 	private static final String NAME = "georeversegeo";
 
 	/**
-	 * Instanziiert eine neues GeoReverseGeo-Objekt.
+	 * Creates new instance of GeoReverseGeo
 	 * 
 	 */
 	public GeoReverseGeo() {
@@ -35,10 +59,10 @@ public class GeoReverseGeo extends AbstractLocationPrivacyAlgorithm {
 	}
 
 	/**
-	 * Instanziiert eine neues GeoReverseGeo-Objekt.
+	 * Creates new instance of GeoReverseGeo
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, dass die Konfiguration des Algorithmus enthält.
+	 *            Parcel object containing the configuration of the algorithm
 	 */
 	public GeoReverseGeo(Parcel in) {
 		super(in, NAME);

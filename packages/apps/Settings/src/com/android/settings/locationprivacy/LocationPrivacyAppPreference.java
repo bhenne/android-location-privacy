@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.settings.locationprivacy;
 
 import android.content.Context;
@@ -15,9 +32,8 @@ import android.view.View.OnClickListener;
 import com.android.settings.R;
 
 /**
- * Die Klasse LocationPrivacyAppPreference ist eine modifizierte Form von
- * SwitchPreference. Im gegensatz zum SwitchPreference wird der Hintergrund der
- * angezeigten Zeile mit einem OnClickListener überlagert.
+ * LocationPrivacyAppPreference is a modified SwitchPreference. 
+ * Its backgroud is overridden with an OnClickListener.
  * 
  * @author Christian Kater
  * 
@@ -30,15 +46,14 @@ public class LocationPrivacyAppPreference extends SwitchPreference implements
 	private LocationPrivacyManager lpManager;
 
 	/**
-	 * Erzeugt ein neues LocationPrivacyAppPreference-Objekt
+	 * Instantiates a new LocationPrivacyAppPreference
 	 * 
 	 * @param context
-	 *            Context in dem das Objekt ausgeführt wird.
+	 *            Context the object is running in
 	 * @param app
-	 *            Anwendung, die dargestellt werden soll.
+	 *            app that will be displayed
 	 * @param settings
-	 *            LocationPrivacySettings-Objekt in dem die Anwendung
-	 *            dargestellt werden soll.
+	 *            LocationPrivacySettings object the app is displayed in
 	 */
 	public LocationPrivacyAppPreference(Context context,
 			LocationPrivacyApplication app, LocationPrivacySettings settings) {
@@ -69,11 +84,10 @@ public class LocationPrivacyAppPreference extends SwitchPreference implements
 	}
 
 	/**
-	 * Reagiert, sobald auf den Hintergrund oder dem Namen der Anwendung bzw.
-	 * dem Algorithmus geklickt wurde.
+	 * Acts when background or name of app is clicked.
 	 * 
 	 * @param v
-	 *            View-Element das angeklickt wurde.
+	 *            View element that have been clicked
 	 */
 	public void onClick(View v) {
 		Bundle extras = new Bundle();
@@ -87,9 +101,10 @@ public class LocationPrivacyAppPreference extends SwitchPreference implements
 	}
 
 	/**
-	 * Speichert die Änderung des Switch-Elements in die Datenbank. 
-	 * @param preference LocationPrivacyAppPreference-Objekt
-	 * @param newValue Neuer Zustand des Switch-Objektes
+	 * Stores change of the switch in the database
+     *
+	 * @param preference LocationPrivacyAppPreference object
+	 * @param newValue new state of switch
 	 */
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		Boolean on = (Boolean) newValue;

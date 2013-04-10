@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.algorithm;
 
 import java.io.BufferedReader;
@@ -26,12 +43,14 @@ import android.os.StrictMode;
 import android.util.Base64;
 import android.util.Log;
 
-// TODO: Auto-generated Javadoc
 /**
- * Die Klasse Webservice baut eine Verbindung zu einem Webservice auf, der über
- * HTTPS zu erreichen ist, als Authentifizierung Hypertext Transfer Protocol
- * (HTTP) Basic benutzt, und die Rückgabe im JavaScript Object Notation (JSON)
- * liefert.
+ * The algorithm Webservice makes a call to an obfuscation service on the Web.
+ * Service is requested via HTTPS connection and authenticated via HTTP Basic Auth.
+ * The service returns the obfuscated location as JSON data, which is parsed and
+ * finally returned by the algorithm.
+ *
+ * @author Christian Kater
+ *
  */
 public class Webservice extends AbstractLocationPrivacyAlgorithm {
 
@@ -39,17 +58,17 @@ public class Webservice extends AbstractLocationPrivacyAlgorithm {
 	private static final String NAME = "webservice";
 
 	/**
-	 * Instanziert eine neues Webservice-Objekt.
+	 * Creates new instance of Webservice
 	 */
 	public Webservice() {
 		super(NAME);
 	}
 
 	/**
-	 * Instanziert eine neues Webservice-Objekt.
+	 * Creates new instance of Webservice
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, dass die Konfiguration des Algorithmus enthält.
+	 *            Parcel object containing the configuration of the algorithm
 	 */
 	private Webservice(Parcel in) {
 		super(in, NAME);
@@ -96,10 +115,9 @@ public class Webservice extends AbstractLocationPrivacyAlgorithm {
 	 */
 	@Override
 	public Location calculateLocation(Location location) {
-		// Notwendig um die Netzwerkverbindung auf den Haupt-Thread laufen zu
-		// lassen. Das ist so nicht vorgesehen und eigentlich auch nicht Best
-		// Practise, aber der Haupt-Thread müsste sowieso auf die Standortdaten
-		// warten
+        // We do it this way to run network connection in main thread. This
+        // way is not the normal one and does not comply to best practices,
+        // but the main thread must wait for the obfuscation service reply anyway.
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);

@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.algorithm;
 
 import java.util.ArrayList;
@@ -12,11 +29,14 @@ import android.locationprivacy.model.LocationPrivacyConfiguration;
 import android.os.Parcel;
 import android.util.Log;
 
-// TODO: Auto-generated Javadoc
 /**
- * Die Klasse Radius verschleiert den Standort unter Angabe eines Maximalradius
- * und unter Angabe, wieviel Meter das Endgerät bewegt werden muss, um einen
- * neuen Standort zu berechnen.
+ * The algorithm Radius maps a real location to a random location within a
+ * given range. A distance contraint prevents location from frequently
+ * jumping on the map: Only if the device moved x meters, a new location
+ * is generated.
+ *
+ * @author Christian Kater
+ *
  */
 public class Radius extends AbstractLocationPrivacyAlgorithm {
 
@@ -24,17 +44,17 @@ public class Radius extends AbstractLocationPrivacyAlgorithm {
 	private static final String NAME = "radius";
 
 	/**
-	 * Instanziiert eine neues Radius-Objekt.
+	 * Creates new instance of Radius
 	 */
 	public Radius() {
 		super(NAME);
 	}
 
 	/**
-	 * Instanziiert eine neues Radius-Objekt.
+	 * Creates new instance of Radius
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, dass die Konfiguration des Algorithmus enthält.
+	 *            Parcel object containing the configuration of the algorithm
 	 */
 	private Radius(Parcel in) {
 		super(in, NAME);
@@ -61,8 +81,8 @@ public class Radius extends AbstractLocationPrivacyAlgorithm {
 		HashMap<String, Integer> intValues = new HashMap<String, Integer>();
 		intValues.put("radius", 500);
 		intValues.put("movement", 50);
-		// 999.0 kann als Längengrad nicht erreicht werden, da dieser Maximal
-		// 180 sein kann. Daher wird 999 für nicht gesetzt genutzt.
+		// 999.0 is no real longitude, it cannot be greater than 180.0
+		// We use 999 as empty/unset value
 		Map<String, Coordinate> coordinateValues = new HashMap<String, Coordinate>();
 		coordinateValues.put("private_lastlocation", new Coordinate(999.0,
 				999.0, 0.0));

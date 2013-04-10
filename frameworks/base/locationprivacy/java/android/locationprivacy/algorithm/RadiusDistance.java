@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.algorithm;
 
 import java.util.ArrayList;
@@ -15,9 +32,13 @@ import android.os.Parcelable.Creator;
 import android.util.Log;
 
 /**
- * Die Klasse RadiusDistance verschleiert den Standort unter Angabe eines Maximalradius,
- * Mindestabstands und unter Angabe, wieviel Meter das Endgerät bewegt werden
- * muss, um einen neuen Standort zu berechnen. 
+ * The algorithm RadiusDistance maps a real location to a random location 
+ * within a given range with minimum difference to real coordinates. 
+ * A distance contraint prevents location from frequently jumping on 
+ * the map: Only if the device moved x meters, a new location is generated.
+ *
+ * @author Christian Kater
+ *
  */
 public class RadiusDistance extends AbstractLocationPrivacyAlgorithm {
 
@@ -28,17 +49,17 @@ public class RadiusDistance extends AbstractLocationPrivacyAlgorithm {
 	public static double radius2;
 
 	/**
-	 * Instanziert eine neues RadiusDistance-Objekt.
+	 * Creates new instance of RadiusDistance
 	 */
 	public RadiusDistance() {
 		super(NAME);
 	}
 
 	/**
-	 * Instanziert eine neues RadiusDistance-Objekt.
+	 * Creates new instance of RadiusDistance
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, dass die Konfiguration des Algorithmus enthält.
+	 *            Parcel object containing the configuration of the algorithm
 	 */
 	public RadiusDistance(Parcel in) {
 		super(in, NAME);

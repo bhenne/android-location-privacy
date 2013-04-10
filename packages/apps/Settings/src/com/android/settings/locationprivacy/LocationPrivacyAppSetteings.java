@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.settings.locationprivacy;
 
 import java.util.ArrayList;
@@ -42,9 +59,8 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 /**
- * Die Klasse LocationPrivacyAppSetteings realisiert die GUI für die Zuweisung
- * von Anwendung zu AbstractLocationPrivacyAlgorithm und
- * LocationPrivacyConfiguration.
+ * LocationPrivacyAppSettings implements the GUI for the configuration
+ * of an app's obfuscation algorithm and configuration
  * 
  * @author Christian Kater
  * 
@@ -59,17 +75,15 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	private LocationPrivacyManager lpManager;
 	private List<String> lpAlgorithm;
 	/*
-	 * Zuordnung Preference zu Name und Typ des Wertes der
-	 * LocationPrivacyConfiguration
+	 * Assignment of Preference and name and data type
 	 */
 	private HashMap<Preference, String[]> prefToKey;
 	private ListPreference algorithm;
 
 	/**
-	 * Erzeugt die einzelnen Preference-Objekte für die Auswahl des
-	 * AbstractLocationPrivacyAlgorithm und der Parameter der
-	 * LocationPrivacyConfiguration. Der Bildschirm wird gelöscht und ihm werden
-	 * diese Objekte zugeordnet.
+	 * Provides the Preference objects for selecting the
+	 * AbstractLocationPrivacyAlgorithm and parameter values of
+	 * LocationPrivacyConfiguration
 	 */
 	private PreferenceScreen createPreferenceHierarchy() {
 		PreferenceScreen root = getPreferenceScreen();
@@ -167,7 +181,7 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	/**
 	 * @see SettingsPreferenceFragment#onStart()
 	 * 
-	 *      Erzeugt den Hauptbildschirm und das Switch-Objket im Header
+	 *      Creates the settings UI and the switch at the top
 	 */
 	public void onStart() {
 		super.onStart();
@@ -210,14 +224,13 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Ändert sich der Wert eines Preference-Objektes wird diese Methode
-	 * aufgerufen. Über den LocationPrivacyManager werden die neuen Werte in die
-	 * Datenbank geschrieben.
+     * If a parameter value changes, this method is called. Using the
+     * LocationPrivacyManager, the new values are stored in the database
 	 * 
 	 * @param preference
-	 *            Verändertes Preference-Objekt
+	 *            changed preference object
 	 * @param newValue
-	 *            neue Wert des Preference-Objekt
+	 *            new value of that preference
 	 */
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		if (preference == algorithm) {
@@ -268,7 +281,7 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Wechselt bei Klick auf das Switch-Element den Zustand der Anwendung
+	 * Changes the state of the app's obfuscation if clicked the switch
 	 */
 	public void onClick(View v) {
 		app.setEnabled(!app.isEnabled());
@@ -277,7 +290,7 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Startet die Activity zum Einstellen einer Koordinate. 
+	 * Starts the Activity for Coordinate selection on map
 	 */
 	public boolean onPreferenceClick(Preference preference) {
 		String[] extras = prefToKey.get(preference);
@@ -291,7 +304,7 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Fängt die Rückgabe der MapActivtiy ab. Die neue Koordinate wird in der Datenbank gespeichert. 
+     * Catches return value of MapActivity and stores it in the database
 	 */
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 0) {
@@ -311,11 +324,11 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Gibt die Ressourcen-Id zum Titels der Preference-Objekte zurück
+	 * Returns resource id for preference title by key
 	 * 
 	 * @param key
-	 *            Schlüssel des Parameters
-	 * @return ID Ressourcen-Id
+	 *            key of configuration parameter
+	 * @return resource id
 	 */
 	private int getTitleId(String key) {
 		String title = "lp_" + app.getAlgorithm().getName() + "_" + key;
@@ -323,11 +336,11 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Gibt die Ressourcen-Id zur Beschreibung der Preference-Objekte zurück
+	 * Returns resource id for preference description by key
 	 * 
 	 * @param key
-	 *            Schlüssel des Parameters
-	 * @return the Ressourcen-Id
+	 *            key of configuration parameter
+	 * @return the resource id
 	 */
 	private int getSummaryId(String key) {
 		String summary = "lp_" + app.getAlgorithm().getName() + "_" + key
@@ -337,15 +350,14 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 
 
 	/**
-	 * Speichert Zuordnung von Preference zu Parameterschlüssel und Datentyp.
+	 * Stores assignment of Preference to parameter key and datatype
 	 * 
 	 * @param pref
 	 *            Preference
 	 * @param key
-	 *            Schlüssel des zur Preference gehörenden Parameter der
-	 *            Konfiguration
+	 *            Preference key
 	 * @param type
-	 *            Datentyp des Parameters
+	 *            datatype
 	 */
 	private void setPreferenceExtras(Preference pref, String key, String type) {
 		String[] prefExtras = new String[2];
@@ -355,15 +367,15 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Erzeugt ein EditTextPreference für Integer-Parameter. Der zum Schlüssel
-	 * passende Titel, sowie die Beschreibung wird angezeigt. Das Tastaturlayout
-	 * und die aktzeptierten Eingaben sind an Integer angepasst.
-	 * 
+	 * Creates a EditTextPreference for Integer parameters.
+     * Its title and description are shown.
+     * Keyboard layout is limited to integer inputs.
+	 *
 	 * @param key
-	 *            Schlüssel des Parameters
+	 *            parameter key
 	 * @param value
-	 *            Zum Parameter zugehörender Wert
-	 * @return EditTextPreference für Integer Parameter
+	 *            its value
+	 * @return EditTextPreference for Integers
 	 */
 	private EditTextPreference getIntegerPreference(String key, int value) {
 		EditTextPreference intETP = new EditTextPreference(getActivity());
@@ -389,15 +401,15 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Erzeugt ein EditTextPreference für Double-Parameter. Der zum Schlüssel
-	 * passende Titel, sowie die Beschreibung wird angezeigt. Das Tastaturlayout
-	 * und die aktzeptierten Eingaben sind an Double angepasst.
-	 * 
+	 * Creates a EditTextPreference for Double parameters.
+     * Its title and description are shown.
+     * Keyboard layout is limited to double inputs.
+	 *
 	 * @param key
-	 *            Schlüssel des Parameters
+	 *            parameter key
 	 * @param value
-	 *            Zum Parameter zugehörender Wert
-	 * @return EditTextPreference für Double Parameter
+	 *            its value
+	 * @return EditTextPreference for double
 	 */
 	private EditTextPreference getDoublePreference(String key, double value) {
 		EditTextPreference doubleETP = new EditTextPreference(getActivity());
@@ -423,14 +435,14 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Erzeugt ein EditTextPreference für String-Parameter. Der zum Schlüssel
-	 * passende Titel, sowie die Beschreibung wird angezeigt.
-	 * 
+	 * Creates a EditTextPreference for Strings parameters.
+     * Its title and description are shown.
+	 *
 	 * @param key
-	 *            Schlüssel des Parameters
+	 *            parameter key
 	 * @param value
-	 *            Zum Parameter zugehörender Wert
-	 * @return EditTextPreference für String Parameter
+	 *            its value
+	 * @return EditTextPreference for String
 	 */
 	private EditTextPreference getStringPreference(String key, String value) {
 		EditTextPreference stringETP = new EditTextPreference(getActivity());
@@ -453,18 +465,16 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Erzeugt ein ListPreference für Enum-Parameter. Der zum Schlüssel passende
-	 * Titel, sowie die Beschreibung wird angezeigt. Zu den Einträgen werden die
-	 * entsprechenden Strings ermittelt und angezeigt.
-	 * 
+	 * Creates a ListPreference for Enum parameters.
+     * Its title and description are shown.
+	 *
 	 * @param key
-	 *            Schlüssel des Parameters
+	 *            parameter key
 	 * @param value
-	 *            Zum Parameter zugehörende Werte
-	 * 
+	 *            its values
 	 * @param choosen
-	 *            Als ausgewählt angezeigter Wert
-	 * @return ListPreference für Enum-Parameter
+	 *            selected value
+	 * @return ListPreference for Enum
 	 */
 	private ListPreference getEnumPreference(String key, List<String> values,
 			String choosen) {
@@ -497,14 +507,14 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 
 	/**
-	 * Erzeugt eine CheckBoxPreference für Boolean-Parameter. Der zum Schlüssel
-	 * passende Titel, sowie die Beschreibung wird angezeigt.
-	 * 
+	 * Creates a CheckboxPreference.
+     * Its title and description are shown.
+	 *
 	 * @param key
-	 *            Schlüssel des Parameters
+	 *            parameter key
 	 * @param value
-	 *            Zum Parameter zugehörender Wert
-	 * @return CheckBoxPreference für Boolean Parameter
+	 *            its value
+	 * @return CheckBoxPreference for Boolean
 	 */
 	private CheckBoxPreference getBooleanPreference(String key, boolean value) {
 		CheckBoxPreference booleanCBP = new CheckBoxPreference(getActivity());
@@ -522,16 +532,15 @@ public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
 	}
 	
 	/**
-	 * Erzeugt eine Preference für Coordinate-Parameter. Der zum Schlüssel
-	 * passende Titel, sowie die Beschreibung wird angezeigt. Wird auf das
-	 * Preference Objekt geklickt wird eine MapActivity zum Einstellen der
-	 * Koordinate gestartet.
-	 * 
+	 * Creates a Preference for Coordinates.
+     * Its title and description are shown.
+     * MapActivity is started.
+	 *
 	 * @param key
-	 *            Schlüssel des Parameters
+	 *            parameter key
 	 * @param value
-	 *            Zum Parameter zugehörender Wert
-	 * @return CheckBoxPreference für Boolean Parameter
+	 *            its value
+	 * @return Preference for Coordinates
 	 */
 	private Preference getCoordinatePreference(String key, Coordinate value) {
 		Preference coordPref = new Preference(getActivity());

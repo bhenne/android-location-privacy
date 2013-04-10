@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.model;
 
 import android.location.Location;
@@ -5,19 +22,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Die Klasse Coordinate stellt eine Geographische Koordinate dar. Diese hat
- * einen Breitengrad, einen Längengrad und eine Höhe.
+ * Represents a geographic coordinate (latitude, longitude, altitude)
  * 
  * @author Christian Kater
  * 
  */
 public class Coordinate implements Parcelable {
-	/** Längengrad */
+	/** Longitude */
 	public double longitude;
-	/** Breitengrad */
+	/** Latitude */
 	public double latitude;
 
-	/** Höhe */
+	/** Altitude */
 	public double altitude;
 
 	public static final Parcelable.Creator<Coordinate> CREATOR = new Parcelable.Creator<Coordinate>() {
@@ -34,7 +50,7 @@ public class Coordinate implements Parcelable {
 	};
 
 	/**
-	 * Instanziiert eine neues Coordinate-Objekt
+	 * Creates new instance of Coordinate
 	 * 
 	 * @param longitude
 	 *            the longitude
@@ -51,7 +67,7 @@ public class Coordinate implements Parcelable {
 	}
 
 	/**
-	 * Instanziiert eine neues Coordinate-Objekt. Die Höhe hat den Wert 0.
+	 * Creates new instance of Coordinate with altitude 0.
 	 * 
 	 * @param longitude
 	 *            the longitude
@@ -66,10 +82,10 @@ public class Coordinate implements Parcelable {
 	}
 
 	/**
-	 * Instanziiert eine neues Coordinate-Objekt.
+	 * Creates new instance of Coordinate
 	 * 
 	 * @param in
-	 *            Parcel-Objekt, mit Längen- und Breitengrad, sowie die Höhe.
+	 *            Parcel object containing lat, lon, alt
 	 */
 	public Coordinate(Parcel in) {
 		longitude = in.readDouble();
@@ -150,15 +166,14 @@ public class Coordinate implements Parcelable {
 	}
 
 	/**
-	 * Gibt ein Location-Objekt mit den Koordinaten des Coordinate-Objekt
-	 * zurück. Basis für alle anderen Daten des Location-Objektes, wie die
-	 * Geschwindigkeit wird aus einem anderen Location-Objekt bezogen.
+     * Returns a Location with coordinates of the Coordinate object.
+     * Other data such as velocity is read from another Location object.
 	 * 
 	 * @param coordinate
-	 *            Koordinaten 
+	 *            the Coordinate 
 	 * @param location
-	 *            Basis
-	 * @return Location mit Längen- und Breitengrad entsprechend der übergebenen Koordinate.
+	 *            the base Location object
+	 * @return Location updates with data from Coordinate
 	 */
 	public static Location getLocation(Coordinate coordinate, Location location) {
 		Location newLoc = new Location(location);
@@ -169,12 +184,11 @@ public class Coordinate implements Parcelable {
 	}
 
 	/**
-	 * Gibt ein Location-Objekt mit den Koordinaten des Coordinate-Objekt
-	 * zurück. 
+     * Returns a Location with coordinates of the Coordinate object.
 	 * 
 	 * @param coordinate
-	 *            Koordinaten 
-	 * @return Location mit Längen- und Breitengrad entsprechend der übergebenen Koordinate.
+	 *            the Coordinate 
+	 * @return Location with data from Coordinate
 	 */
 	public static Location getLocation(Coordinate coordinate) {
 		Location newLoc = new Location("GPS");
@@ -185,11 +199,11 @@ public class Coordinate implements Parcelable {
 	}
 
 	/**
-	 * Erzeugt ein Coordinate-Objekt aus einem Location-Objekt. 
+	 * Creates a Coordinate Object from a Location object
 	 * 
 	 * @param location
-	 *            Standort
-	 * @return Koordinaten des Standortes
+	 *            the Location
+	 * @return the Coordinate
 	 */
 	public static Coordinate getCoordinate(Location location) {
 		Coordinate coordinate = new Coordinate(location.getLongitude(),

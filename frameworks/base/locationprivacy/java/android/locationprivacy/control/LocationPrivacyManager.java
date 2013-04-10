@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013 Distributed Computing & Security Group,
+ *                    Leibniz Universitaet Hannover, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package android.locationprivacy.control;
 
 import java.math.BigInteger;
@@ -34,34 +51,31 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
- * Die Klasse LocationPrivacyManager abstrahiert den Zugriff auf das Framework
- * und die Daten. Es stelle alle Methoden zur Verwaltung und Benutzung des
- * Frameworks zur Verfügung.
+ * The LocationPrivacyManager abstracts access to the location privacy framework
+ * and configuration. It provides all methods for configuration and usage.
  * 
  * @author Christian Kater
  * 
  */
 public class LocationPrivacyManager {
 	/**
-	 * Verwendete LocationPrivacyApplication. Wird benutzt, um die Zugriffe auf
-	 * die Datenbank so gering wie möglich zu halten.
+	 * Cached LocationPrivacyApplications. Caching data to minimize access to database.
 	 */
 	private ArrayList<LocationPrivacyApplication> applications;
 	/**
-	 * Information, ob das Location-Privacy-Framework eingeschaltet ist oder
-	 * nicht
+	 * Is location privacy framework enabled?
 	 */
 	private boolean status;
 
 	/**
-	 * Gibt eine Instanz des zum Namen passenden Verfahren zurück
+	 * Creates new Instance of obfuscation algorithm with given name
 	 */
 	public static AbstractLocationPrivacyAlgorithm getAlgorithm(String name) {
 		return algorithms.get(name).newInstance();
 	}
 
 	/**
-	 * Gibt eine Liste alle Verfahren zur Verschleierung des Standortes zurück.
+	 * Returns a list of available obfuscation algorihms
 	 */
 	public static List<String> getAllAlgorithm() {
 		ArrayList<String> sortedKeys = new ArrayList<String>(
@@ -71,19 +85,19 @@ public class LocationPrivacyManager {
 		return sortedKeys;
 	}
 
-	/** Context, in dem der LocationPrivacyManager ausgeführt wird */
+	/** Context the location privacy framework is running in */
 	private Context context;
 
 	private CryptoDatabase database;
 
-	/** Alle verfügbare Verfahren zur Verschleierung des Standortes */
+	/** All location obfuscation algorithms */
 	private static HashMap<String, AbstractLocationPrivacyAlgorithm> algorithms;
 
 	/**
-	 * Instanziiert eine neues LocationPrivacyManager-Objekt
+	 * Creates new instance of LocationPrivacyManager
 	 * 
 	 * @param oContext
-	 *            Context, in dem der LocationPrivacyManager ausgeführt wird
+	 *            Context the location privacy framework is running in
 	 */
 	public LocationPrivacyManager(Context oContext) {
 		try {
@@ -121,15 +135,14 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Fügt ein neues Verfahren zur Verschleierung des Standortes dem
-	 * Location-Privacy-Framework hinzu
+	 * Adds new location obfuscation algorithm
 	 */
 	private void addAlgorithm(AbstractLocationPrivacyAlgorithm algorithm) {
 		algorithms.put(algorithm.getName(), algorithm);
 	}
 
 	/**
-	 * Fügt eine Anwendung dem Location-Privacy-Framework hinzu.
+	 * Adds new application to the location privacy framework
 	 */
 	public LocationPrivacyApplication addApplication(String uid, String name) {
 		ContentValues values = new ContentValues();
@@ -153,17 +166,16 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Verschleiert den Standort. Entsprechend der uid wird das Verfahren zur
-	 * Verschleierung des Standortes gewählt. Ist die uid nicht im Framework
-	 * enthalten, so wird diese hinzugefügt.
+     * Obfuscates location. Based on the uid the corresponding algorithm is used.
+     * If uid is new to framework, it is added with default values.
 	 * 
 	 * @param location
-	 *            Standort, der zu verschleiern ist
+	 *            original location
 	 * @param uid
-	 *            User-ID der Anwendung
+	 *            uid app is running as
 	 * @param name
-	 *            Name der Anwendung
-	 * @return verschleierter Standort
+	 *            app name
+	 * @return obfuscated location
 	 */
 	public Location disguiseLocation(Location location, String uid, String name) {
 		if (location != null) {
@@ -203,11 +215,10 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Gibt die zur Anwendung passende LocationPrivacyApplication zurück.
+	 * Returns LocationPrivacyApplication corresponding to an app (uid)
 	 * 
 	 * @param uid
-	 * @return LocationPrivacyApplication. null falls die uid nicht im Framework
-	 *         enthalten ist.
+	 * @return LocationPrivacyApplication. null if uid not known to framework
 	 */
 	public LocationPrivacyApplication getApplication(String uid) {
 		Cursor cursor = database.query("APPLICATION", null, "uid = ?",
@@ -236,7 +247,7 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Gibt eine Liste aller im Framework enthaltenen Anwendungen zurück.
+	 * Returns a List of all apps known by the location privacy framework
 	 */
 	public List<LocationPrivacyApplication> getApplications() {
 		ArrayList<LocationPrivacyApplication> list = new ArrayList<LocationPrivacyApplication>();
@@ -271,10 +282,10 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Gibt die LocationPrivacyConfiguration einer Anwendung zurück.
+	 * Returns LocationPrivacyConfiguration of an app (uid)
 	 * 
 	 * @param uid
-	 *            User-Id der Anwendung
+	 *            uid app is running as
 	 * @return LocationPrivacyConfiguration
 	 */
 	public LocationPrivacyConfiguration getConfiguration(String uid) {
@@ -360,9 +371,9 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Gibt den Standardalgorithmus zurück.
+	 * Returns the default obfuscation algorithm
 	 * 
-	 * @return Als Standard gewähltes AbstractLocationPrivacyAlgorithm-Objekt
+	 * @return AbstractLocationPrivacyAlgorithm select by user as default
 	 */
 	public AbstractLocationPrivacyAlgorithm getDefaultAlgorithm() {
 		Cursor cDefaultAlgorithm = database.query("GENRALCONFIGURATION", null,
@@ -377,9 +388,9 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Gibt an, ob das Location-Privacy-Framework Ein- oder Ausgeschaltet ist.
+	 * Returns location privacy framework state (enaled/disabled)
 	 * 
-	 * @return Status des Location-Privacy-Frameworks
+	 * @return state of location privacy framework
 	 */
 	public boolean getStatus() {
 		Cursor cStatus = database.query("GENRALCONFIGURATION", null,
@@ -391,8 +402,7 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Fügt alle Verfahren zur Verschleierung des Standortes dem
-	 * Location-Privacy-Framework hinzu.
+	 * Adds all obfuscation algorithms to the framework
 	 */
 	private void initialize() {
 		algorithms = new HashMap<String, AbstractLocationPrivacyAlgorithm>();
@@ -405,8 +415,7 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Löscht Anwendungen aus dem Location-Privacy-Framework, die deinstalliert
-	 * wurden.
+     * Removes apps/configuration that have been deinstalled
 	 */
 	public void removeOldApplications() {
 
@@ -450,10 +459,10 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Aktualisert eine LocationPrivacyApplication.
+	 * Updates a LocationPrivacyApplication
 	 * 
 	 * @param app
-	 *            Zu aktualisierende LocationPrivacyApplication.
+	 *            LocationPrivacyApplication to be updated
 	 */
 	public void setApplication(LocationPrivacyApplication app) {
 		ContentValues values = new ContentValues();
@@ -477,16 +486,14 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Aktualisert eine LocationPrivacyConfiguration.
+	 * Updates a LocationPrivacyConfiguration
 	 * 
 	 * @param uid
-	 *            User-Id der zur LocationPrivacyConfiguration gehörenden
-	 *            Anwendung.
+	 *            uid of app corresponding to LocationPrivacyConfiguration
 	 * @param config
-	 *            Aktualisierte LocationPrivacyConfiguration
+	 *            updated LocationPrivacyConfiguration
 	 * @param defaultAlgorithm
-	 *            Gehört die LocationPrivacyConfiguration zum
-	 *            Standardalgorithmus?
+	 *            is this configuration of default algorithm?
 	 */
 	public void setConfiguration(String uid,
 			LocationPrivacyConfiguration config, boolean defaultAlgorithm) {
@@ -576,12 +583,12 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Aktualisiert den Standardalgorithmus
+	 * Updates default obfuscation algorithm
 	 * 
 	 * @param algorithmName
-	 *            Name des neuen Standardalgorithmus
+	 *            name of default algorithm
 	 * @param config
-	 *            LocationPrivacyConfiguration des Standardalgorithmus
+	 *            LocationPrivacyConfiguration of default algorithm
 	 */
 	public void setDefaultAlgorithm(String algorithmName,
 			LocationPrivacyConfiguration config) {
@@ -595,10 +602,10 @@ public class LocationPrivacyManager {
 	}
 
 	/**
-	 * Aktualisiert den Status des Location-Privacy-Framework.
+	 * Updates state of location privacy framework
 	 * 
 	 * @param on
-	 *            Ist das Location-Privacy-Framework ein- bzw. ausgeschaltet?
+	 *            new framework state
 	 */
 	public void setStatus(boolean on) {
 		ContentValues values = new ContentValues();
@@ -609,14 +616,16 @@ public class LocationPrivacyManager {
 		Log.i("LPManager", "Framework status = " + on);
 	}
 
+    /**
+     * Send broadcast on data change for updating configurations
+     */
 	private void dataChanged() {
 		context.sendBroadcast(new Intent(
 				"com.android.server.LocationManagerService.locationprivacy"));
 	}
 
 	/**
-	 * Löscht den Zwischenspeicher der LocationPrivacyApplication und liest den
-	 * Status des Frameworks neu aus der Datenbank.
+	 * Cleans cached data of LocationPrivacyApplication re-reads it from database
 	 */
 	public void updateData() {
 		applications = new ArrayList<LocationPrivacyApplication>();
