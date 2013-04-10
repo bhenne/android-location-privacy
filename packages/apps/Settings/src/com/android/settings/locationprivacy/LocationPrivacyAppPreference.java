@@ -96,7 +96,7 @@ public class LocationPrivacyAppPreference extends SwitchPreference implements
 		// v.setBackgroundColor(android.R.color.holo_blue_light);
 		v.setBackgroundColor(Color.rgb(6, 128, 170));
 		settings.startFragment(settings,
-				LocationPrivacyAppSetteings.class.getName(), 0, extras);
+				LocationPrivacyAppSettings.class.getName(), 0, extras);
 
 	}
 

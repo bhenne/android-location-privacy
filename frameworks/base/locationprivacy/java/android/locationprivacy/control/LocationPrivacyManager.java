@@ -177,7 +177,7 @@ public class LocationPrivacyManager {
 	 *            app name
 	 * @return obfuscated location
 	 */
-	public Location disguiseLocation(Location location, String uid, String name) {
+	public Location obfuscateLocation(Location location, String uid, String name) {
 		if (location != null) {
 			Location locTemp = new Location(location);
 			if (status) {
@@ -200,7 +200,7 @@ public class LocationPrivacyManager {
 					AbstractLocationPrivacyAlgorithm algorithm = app
 							.getAlgorithm();
 					algorithm.setContext(context);
-					locTemp = algorithm.calculateLocation(location);
+					locTemp = algorithm.obfuscate(location);
 				}
 			}
 			return locTemp;

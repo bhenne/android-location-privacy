@@ -82,7 +82,7 @@ FRAMEWORKS_BASE_SUBDIRS := \
 	    core \
 	    graphics \
 	    location \
-           locationprivacy \
+	    locationprivacy \
 	    media \
 	    drm \
 	    opengl \

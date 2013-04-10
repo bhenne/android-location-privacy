@@ -65,7 +65,7 @@ public class TestAlgorithm extends AbstractLocationPrivacyAlgorithm{
 		return new LocationPrivacyConfiguration(intValues, doubleValues, stringValues, enumValues, enumChoosen, coordinateValues, booleanValues);
 	}
 
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
 		Location newLoc = new Location(location);
 		newLoc.setLatitude(configuration.getInt("integer") + location.getLatitude());
 		newLoc.setLongitude(configuration.getDouble("double") + location.getLongitude());

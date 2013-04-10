@@ -343,7 +343,7 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                     synchronized (this) {
                         // synchronize to ensure incrementPendingBroadcastsLocked()
                         // is called before decrementPendingBroadcasts()
-                        Location calcLoc = locationPrivacyManager.disguiseLocation(location, "" + uid, name);
+                        Location calcLoc = locationPrivacyManager.obfuscateLocation(location, "" + uid, name);
                         if(calcLoc != null){
                             mListener.onLocationChanged(calcLoc);
                             if (mListener != mProximityListener) {
@@ -358,7 +358,7 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                 }
             } else {
                 Intent locationChanged = new Intent();
-                Location calcLoc = locationPrivacyManager.disguiseLocation(location, "" + uid, name);
+                Location calcLoc = locationPrivacyManager.obfuscateLocation(location, "" + uid, name);
                 locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, calcLoc);
                 try {
                     synchronized (this) {
@@ -1810,7 +1810,7 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                         e.printStackTrace();
                     }
                 }
-                return locationPrivacyManager.disguiseLocation(_getLastKnownLocationLocked(provider), "" + uid, name);
+                return locationPrivacyManager.obfuscateLocation(_getLastKnownLocationLocked(provider), "" + uid, name);
             }
         } catch (SecurityException se) {
             throw se;

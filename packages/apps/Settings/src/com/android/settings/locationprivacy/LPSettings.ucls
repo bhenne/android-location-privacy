@@ -26,8 +26,8 @@
     </display>  
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" 
-    name="com.android.settings.locationprivacy.LocationPrivacyAppSetteings" project="cm9" 
-    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyAppSetteings.java" 
+    name="com.android.settings.locationprivacy.LocationPrivacyAppSettings" project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyAppSettings.java" 
     binary="false">    
     <position height="-1" width="-1" x="108" y="1492"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      

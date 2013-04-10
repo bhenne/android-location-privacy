@@ -99,9 +99,9 @@ public class Radius extends AbstractLocationPrivacyAlgorithm {
 	 * (non-Javadoc)
 	 * 
 	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#
-	 * calculateLocation(android.location.Location)
+	 * obfuscate(android.location.Location)
 	 */
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
 		double EARTH_RADIUS = 6371000;
 		double TO_RADIAN = Math.PI / 180;
 		double METER_PER_LATITUDE = 111320;

@@ -25,7 +25,7 @@
     <string name="lp_radiusdistance_radius">Radius</string>
 	<string name="lp_radiusdistance_radius_summary">Radius of the zone where you could be</string>
 	<string name="lp_radiusdistance_distance">Distance</string>
-	<string name="lp_radiusdistance_distance_summary">Minimal Distance between you and your disguised location</string>
+	<string name="lp_radiusdistance_distance_summary">Minimal Distance between you and your obfuscated location</string>
 	<string name="lp_radiusdistance_movement">Distance for new Position</string>
 	<string name="lp_radiusdistance_movement_summary">Distance to move in meter to calculate new Position</string>
 	

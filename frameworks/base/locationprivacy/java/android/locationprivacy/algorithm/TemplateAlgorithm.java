@@ -53,7 +53,7 @@ public class TemplateAlgorithm extends AbstractLocationPrivacyAlgorithm {
 	}
 
 	@Override
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
 		/*
 		 * Implement obfuscation here 
 		 */

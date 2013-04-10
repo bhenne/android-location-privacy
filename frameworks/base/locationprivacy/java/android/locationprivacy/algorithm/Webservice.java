@@ -111,10 +111,10 @@ public class Webservice extends AbstractLocationPrivacyAlgorithm {
 	 * (non-Javadoc)
 	 * 
 	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#
-	 * calculateLocation(android.location.Location)
+	 * obfuscate(android.location.Location)
 	 */
 	@Override
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
         // We do it this way to run network connection in main thread. This
         // way is not the normal one and does not comply to best practices,
         // but the main thread must wait for the obfuscation service reply anyway.

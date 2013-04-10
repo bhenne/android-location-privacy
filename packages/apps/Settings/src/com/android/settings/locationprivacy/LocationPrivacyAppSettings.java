@@ -65,7 +65,7 @@ import com.android.settings.SettingsPreferenceFragment;
  * @author Christian Kater
  * 
  */
-public class LocationPrivacyAppSetteings extends SettingsPreferenceFragment
+public class LocationPrivacyAppSettings extends SettingsPreferenceFragment
 		implements OnPreferenceChangeListener, OnClickListener,
 		OnPreferenceClickListener {
 	private Resources r;

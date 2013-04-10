@@ -182,7 +182,7 @@ public abstract class AbstractLocationPrivacyAlgorithm implements Parcelable {
 	 *            original location
 	 * @return obfuscated location
 	 */
-	public abstract Location calculateLocation(Location location);
+	public abstract Location obfuscate(Location location);
 
 	/**
 	 * Returns an instance of AbstractLocationPrivacyAlgorithm

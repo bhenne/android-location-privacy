@@ -10290,7 +10290,7 @@ package android.locationprivacyframework.algorithm {
   public abstract class AbstractLocationPrivacyAlgorithm implements android.os.Parcelable {
     ctor protected AbstractLocationPrivacyAlgorithm(java.lang.String);
     ctor protected AbstractLocationPrivacyAlgorithm(android.os.Parcel);
-    method public abstract android.location.Location calculateLocation(android.location.Location);
+    method public abstract android.location.Location obfuscate(android.location.Location);
     method public android.locationprivacyframework.model.LocationPrivacyConfiguration getConfiguration();
     method public abstract android.locationprivacyframework.model.LocationPrivacyConfiguration getDefaultConfiguration();
     method public java.lang.String getName();
@@ -10304,7 +10304,7 @@ package android.locationprivacyframework.algorithm {
   public class Radius extends android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm {
     ctor public Radius();
     ctor public Radius(android.os.Parcel);
-    method public android.location.Location calculateLocation(android.location.Location);
+    method public android.location.Location obfuscate(android.location.Location);
     method public int describeContents();
     method public android.locationprivacyframework.model.LocationPrivacyConfiguration getDefaultConfiguration();
     method public android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm newInstance();
@@ -10312,7 +10312,7 @@ package android.locationprivacyframework.algorithm {
 
   public class TestAlgorithm extends android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm {
     ctor public TestAlgorithm();
-    method public android.location.Location calculateLocation(android.location.Location);
+    method public android.location.Location obfuscate(android.location.Location);
     method public int describeContents();
     method public android.locationprivacyframework.model.LocationPrivacyConfiguration getDefaultConfiguration();
     method public android.locationprivacyframework.algorithm.TestAlgorithm newInstance();

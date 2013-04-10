@@ -71,7 +71,7 @@ public class FixedPosition extends AbstractLocationPrivacyAlgorithm {
 	@Override
 	public LocationPrivacyConfiguration getDefaultConfiguration() {
 		Map<String, Coordinate> coordinateValues = new HashMap<String, Coordinate>();
-		coordinateValues.put("position", new Coordinate(0, 0, 0));
+		coordinateValues.put("position", new Coordinate(9.717748, 52.38216, 0));
 		return new LocationPrivacyConfiguration(new HashMap<String, Integer>(),
 				new HashMap<String, Double>(), new HashMap<String, String>(),
 				new HashMap<String, ArrayList<String>>(),
@@ -81,10 +81,10 @@ public class FixedPosition extends AbstractLocationPrivacyAlgorithm {
 	}
 
 	/* (non-Javadoc)
-	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#calculateLocation(android.location.Location)
+	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#obfuscate(android.location.Location)
 	 */
 	@Override
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
 		Coordinate coord = configuration.getCoordinate("position");
 		return Coordinate.getLocation(coord, location);
 	}

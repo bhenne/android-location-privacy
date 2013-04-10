@@ -74,10 +74,10 @@ public class Deactivate extends AbstractLocationPrivacyAlgorithm {
 	}
 
 	/* (non-Javadoc)
-	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#calculateLocation(android.location.Location)
+	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#obfuscate(android.location.Location)
 	 */
 	@Override
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
 		return null;
 	}
 

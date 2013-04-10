@@ -107,10 +107,10 @@ public class GeoReverseGeo extends AbstractLocationPrivacyAlgorithm {
 	 * (non-Javadoc)
 	 * 
 	 * @see android.locationprivacy.model.AbstractLocationPrivacyAlgorithm#
-	 * calculateLocation(android.location.Location)
+	 * obfuscate(android.location.Location)
 	 */
 	@Override
-	public Location calculateLocation(Location location) {
+	public Location obfuscate(Location location) {
 		String detail = configuration.getEnumChoosen("detail");
 		Geocoder geocoder = new Geocoder(context);
 		Location newLocation = null;
