@@ -1,0 +1,28 @@
+base commits used for development
+
+build:
+ git://github.com/CyanogenMod/android_build
+
+ commit dc889653c6aa7ffcd60b6f838e4a1f0698f0ab75
+ Author: Ricardo Cerqueira
+ Date:   Sun Oct 21 19:46:33 2012 +0100
+     roomservice: Handle missing netrc file
+         Change-Id: If981fe79dc3e2191434301239b0cd585be8b4730
+
+frameworks/base:
+ git://github.com/CyanogenMod/android_frameworks_base
+
+ commit ba54a844734a63826a1737491be965f5efbc3630
+ Merge: 66155a8 1446adf
+ Author: Jef Oliver
+ Date:   Wed Nov 21 10:00:21 2012 -0800
+     Merge "Revert "Revert "Add SCENE_MODE_OFF support for Camera framework""" in
+
+packages/apps/Settings
+ git://github.com/CyanogenMod/android_packages_apps_Settings
+
+ commit 9bbbbf8e3f0d9904804eb0aad6eb93bb318a2074
+ Author: Ricardo Cerqueira
+ Date:   Wed Nov 14 20:28:06 2012 +0000
+     Stats: Update reporting and viewing URLs
+         Change-Id: Ic6911934b8166566afca4aa4f86246a9583df717
