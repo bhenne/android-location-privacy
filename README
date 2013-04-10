@@ -1,0 +1,31 @@
+= Android Location Privacy Framework =
+
+An Android OS extension that integrates Location obfuscation 
+ * Adds location obfuscation to Androids location capabilities
+ * Users can select default obfuscation algorithm for all apps
+ * Users can select a different algorithm or configuration for each app
+ * The Framework allows developers easy integration of new algorithms
+
+The base version of the Android Location Privacy Framework was 
+implemented within the bachelor thesis of Christian Kater at the
+ Distributed Computing & Security Group
+ Leibniz Universität Hannover, Germany
+The thesis has been advised by Benjamin Henne.
+
+http://www.dcsec.uni-hannover.de/
+henne@dcsec.uni-hannover.de
+
+
+
+How to create a patch for Android?
+ # Create a diff with the very first commit
+ git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 HEAD >patchfile
+ # including location changes
+ git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 >patchfile
+
+How to patch your Android source before brunch?
+ cd patchdir
+ ./cp.sh androidsourcedir/
+ cd androidsourcedir
+ patch -p0 < patchdir/patchfile
+
