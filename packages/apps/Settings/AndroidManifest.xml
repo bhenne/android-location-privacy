@@ -737,7 +737,12 @@
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/location_settings" />
         </activity>
-
+        <activity
+            android:name="com.android.settings.locationprivacy.LocationPrivacyMap">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                 </intent-filter>
+        </activity>
         <activity android:name="Settings$SecuritySettingsActivity"
                 android:label="@string/security_settings_title"
                 android:configChanges="orientation|keyboardHidden|screenSize"

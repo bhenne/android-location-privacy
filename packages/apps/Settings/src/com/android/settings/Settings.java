@@ -19,6 +19,7 @@ package com.android.settings;
 import com.android.settings.accounts.AccountSyncSettings;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.fuelgauge.PowerUsageSummary;
+import com.android.settings.locationprivacy.LocationPrivacyEnabler;
 import com.android.settings.wifi.WifiEnabler;
 
 import android.content.ComponentName;
@@ -414,6 +415,7 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
 
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
+        private final LocationPrivacyEnabler mLocationPrivacyEnabler;
 
         private static class HeaderViewHolder {
             ImageView icon;
@@ -427,7 +429,7 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
         static int getHeaderType(Header header) {
             if (header.fragment == null && header.intent == null) {
                 return HEADER_TYPE_CATEGORY;
-            } else if (header.id == R.id.wifi_settings || header.id == R.id.bluetooth_settings) {
+            } else if (header.id == R.id.wifi_settings || header.id == R.id.bluetooth_settings || header.id == R.id.lp_settings) {
                 return HEADER_TYPE_SWITCH;
             } else {
                 return HEADER_TYPE_NORMAL;
@@ -468,6 +470,7 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
             // Switches inflated from their layouts. Must be done before adapter is set in super
             mWifiEnabler = new WifiEnabler(context, new Switch(context));
             mBluetoothEnabler = new BluetoothEnabler(context, new Switch(context));
+            mLocationPrivacyEnabler = new LocationPrivacyEnabler(context);
         }
 
         @Override
@@ -524,8 +527,10 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
                     // Would need a different treatment if the main menu had more switches
                     if (header.id == R.id.wifi_settings) {
                         mWifiEnabler.setSwitch(holder.switch_);
-                    } else {
+                    } else if (header.id == R.id.bluetooth_settings ){
                         mBluetoothEnabler.setSwitch(holder.switch_);
+                    } else {
+                    	mLocationPrivacyEnabler.setSwitch(holder.switch_);
                     }
                     // No break, fall through on purpose to update common fields
 
@@ -549,6 +554,7 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
         public void resume() {
             mWifiEnabler.resume();
             mBluetoothEnabler.resume();
+            mLocationPrivacyEnabler.resume();
         }
         
         public void pause() {

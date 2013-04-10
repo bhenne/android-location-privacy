@@ -1,0 +1,81 @@
+<class-diagram version="1.0.11" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" corner="BOTTOM_RIGHT" language="java" name="com.android.settings.locationprivacy" project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy" binary="false">    
+    <position height="1895" width="1559" x="-255" y="27"/>    
+    <display autosize="false" stereotype="true"/>  
+  </package>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" 
+    name="com.android.settings.locationprivacy.LocationPrivacyAppPreference" project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyAppPreference.java" 
+    binary="false">    
+    <position height="252" width="1035" x="-234" y="153"/>    
+    <display autosize="false" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" 
+    name="com.android.settings.locationprivacy.LocationPrivacySettings" project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacySettings.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="59" y="714"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" 
+    name="com.android.settings.locationprivacy.LocationPrivacyAppSetteings" project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyAppSetteings.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="108" y="1492"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.android.settings.locationprivacy.LocationPrivacyMap" 
+    project="cm9" file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyMap.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1053" y="755"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" 
+    name="com.android.settings.locationprivacy.LocationPrivacyDefaultSettings" project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyDefaultSettings.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="936" y="1465"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="com.android.settings.locationprivacy.LocationPrivacyEnabler" 
+    project="cm9" 
+    file="/cm9/packages/apps/Settings/src/com/android/settings/locationprivacy/LocationPrivacyEnabler.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1060" y="275"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="8">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="9" name="settings"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -18,6 +18,7 @@
 
     <!-- String for ShortcutPickHelper -->
     <string name="picker_activities">Activities</string>
+    
     <string name="select_custom_app_title">Select custom application</string>
     <string name="select_custom_activity_title">Select custom activity</string>
     <string name="icon_picker_choose_icon_title">Choose icon</string>

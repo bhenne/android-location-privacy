@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- General -->
+    <string name="lp_title"> Location Privacy</string>
+    <string name="lp_defaultalgo">Standard Algorithmus</string>
+    <string name="lp_defaultalgo_summary">Verändere den Standard Algorithmus</string>
+    <string name="lp_application_heading">Apps</string>
+    <string name="lp_app_title">App Detail</string>
+    <string name="lp_algo">Algorithmus</string>
+    <string name="lp_algo_summary">Wähle den Algorithmus für die App</string>
+    <string name="lp_configuration">Konfiguration</string>
+    
+    <!-- Default -->
+     <string name="lp_default">Standard Algorithmus</string>
+     
+    <!--  Deactivate -->
+    <string name="lp_deactivate">Standortzugriff deaktivieren</string>
+     
+    <!-- Radius -->
+    <string name="lp_radius">Radius</string>
+    <string name="lp_radius_radius">Radius</string>
+	<string name="lp_radius_radius_summary">Radius in dem sich deine verschleierte Position befindet. Einheit: Meter</string>
+	<string name="lp_radius_movement">Distanz bis zur erneuten Berechnung</string>
+	<string name="lp_radius_movement_summary">Distanz in Metern, ab der ein neuer Radius berechnet wird</string>
+	
+	 <!-- Radius with Distance -->
+    <string name="lp_radiusdistance">Radius mit Mindestabstand</string>
+    <string name="lp_radiusdistance_radius">Radius</string>
+	<string name="lp_radiusdistance_radius_summary">Radius in dem sich deine verschleierte Position befindet. Einheit: Meter</string>
+	<string name="lp_radiusdistance_distance">Mindestabstand</string>
+	<string name="lp_radiusdistance_distance_summary">Mindestabstand zwischen dir und deinr verschleierten Position</string>
+	<string name="lp_radiusdistance_movement">Distanz bis zur erneuten Berechnung</string>
+	<string name="lp_radiusdistance_movement_summary">Distanz in Metern, ab der ein neuer Radius berechnet wird</string>
+	
+	 <!-- Fixed Position -->
+	<string name="lp_fixedposition">Feste Position</string>
+    <string name="lp_fixedposition_position">Position</string>
+    <string name="lp_fixedposition_position_summary">Position an der du vorgibst zu sein</string>
+    
+     <!-- GeoReverseGeo -->
+	<string name="lp_georeversegeo">Mapping</string>
+    <string name="lp_georeversegeo_detail">Detail</string>
+    <string name="lp_georeversegeo_detail_summary">Wohin die Position gemappt wird</string>
+    <string name="lp_georeversegeo_detail_street">Straße</string>
+    <string name="lp_georeversegeo_detail_postalcode">Postleitzahl</string>
+    <string name="lp_georeversegeo_detail_city">Stadt</string>
+    <string name="lp_georeversegeo_detail_country">Land</string>
+    
+     <!-- Webservice-->
+	<string name="lp_webservice">Webservice</string>
+    <string name="lp_webservice_host">Host</string>
+    <string name="lp_webservice_host_summary">Host-Address des Webservice</string>
+    <string name="lp_webservice_username">Username</string>
+    <string name="lp_webservice_username_summary">Username zum anmelden am Webservice</string>
+    <string name="lp_webservice_secret_password">Passwort</string>
+    <string name="lp_webservice_secret_password_summary">Passwort zum anmelden am Webservice </string>
+    
+	<!-- Test Algorithm -->
+	<string name="lp_testalgorithm">Testalgorithmus</string>
+	<string name="lp_testalgorithm_integer">Integer DE</string>
+	<string name="lp_testalgorithm_integer_summary">Integer Summary DE</string>
+	<string name="lp_testalgorithm_double">Double DE</string>
+	<string name="lp_testalgorithm_double_summary">Double Summary DE</string>
+	<string name="lp_testalgorithm_string">String DE</string>
+	<string name="lp_testalgorithm_string_summary">String Summary DE</string>
+	<string name="lp_testalgorithm_enum">Enum DE</string>
+	<string name="lp_testalgorithm_enum_summary">Enum Summary DE</string>
+	<string name="lp_testalgorithm_enum_christian">Christian DE</string>
+	<string name="lp_testalgorithm_enum_benjamin">Benjamin DE</string>
+	<string name="lp_testalgorithm_coordinate">Coordinate DE</string>
+	<string name="lp_testalgorithm_coordinate_summary">Coordinate Summary DE</string>
+	<string name="lp_testalgorithm_boolean">Boolean DE</string>
+	<string name="lp_testalgorithm_boolean_summary">Boolean Summary DE</string>
+</resources>

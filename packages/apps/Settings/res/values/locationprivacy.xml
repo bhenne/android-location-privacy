@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- General -->
+    <string name="lp_title"> Location Privacy</string>
+    <string name="lp_defaultalgo">Default Algorithm</string>
+    <string name="lp_defaultalgo_summary">Change the default algorithm</string>
+    <string name="lp_application_heading">Applications</string>
+    <string name="lp_app_title">Application Detail</string>
+    <string name="lp_algo">Algorithm</string>
+    <string name="lp_algo_summary">Choose the algorithm for the App</string>
+    <string name="lp_configuration">Configuration</string>
+    
+    <!-- Default -->
+     <string name="lp_default">Default Algorithm</string>
+     
+    <!-- Radius -->
+    <string name="lp_radius">Radius</string>
+    <string name="lp_radius_radius">Radius</string>
+	<string name="lp_radius_radius_summary">Radius of the zone where you could be</string>
+	<string name="lp_radius_movement">Distance for new Position</string>
+	<string name="lp_radius_movement_summary">Distance to move in meter to calculate new Position</string>
+	
+	 <!-- Radius with Distance -->
+    <string name="lp_radiusdistance">Radius with Distance</string>
+    <string name="lp_radiusdistance_radius">Radius</string>
+	<string name="lp_radiusdistance_radius_summary">Radius of the zone where you could be</string>
+	<string name="lp_radiusdistance_distance">Distance</string>
+	<string name="lp_radiusdistance_distance_summary">Minimal Distance between you and your disguised location</string>
+	<string name="lp_radiusdistance_movement">Distance for new Position</string>
+	<string name="lp_radiusdistance_movement_summary">Distance to move in meter to calculate new Position</string>
+	
+	 <!-- Fixed Position -->
+	<string name="lp_fixedposition">Fixed Position</string>
+    <string name="lp_fixedposition_position">Position</string>
+    <string name="lp_fixedposition_position_summary">Position where you pretend to be</string>
+    
+     <!-- Deactivate Location-->
+	<string name="lp_deactivate">Deactivate Location Access</string>
+    
+     <!-- GeoReverseGeo -->
+	<string name="lp_georeversegeo">Mapping</string>
+    <string name="lp_georeversegeo_detail">Detail</string>
+    <string name="lp_georeversegeo_detail_summary">Wehre the Position will be mapped</string>
+    <string name="lp_georeversegeo_detail_street">Street</string>
+    <string name="lp_georeversegeo_detail_postalcode">Postal Code</string>
+    <string name="lp_georeversegeo_detail_city">City</string>
+    <string name="lp_georeversegeo_detail_country">Country</string>
+    
+     <!-- Fixed Position -->
+	<string name="lp_webservice">Webservice</string>
+    <string name="lp_webservice_host">Host</string>
+    <string name="lp_webservice_host_summary">Host-Address of the webservice</string>
+    <string name="lp_webservice_username">Username</string>
+    <string name="lp_webservice_username_summary">Username to login into the webservice</string>
+    <string name="lp_webservice_secret_password">Password</string>
+    <string name="lp_webservice_secret_password_summary">Password to login into the webservice </string>
+    
+   
+	<!-- Test Algorithm -->
+	<string name="lp_testalgorithm">Testalgorithm</string>
+	<string name="lp_testalgorithm_integer">Integer ENG</string>
+	<string name="lp_testalgorithm_integer_summary">Integer Summary ENG</string>
+	<string name="lp_testalgorithm_double">Double ENG</string>
+	<string name="lp_testalgorithm_double_summary">Double Summary ENG</string>
+	<string name="lp_testalgorithm_string">String ENG</string>
+	<string name="lp_testalgorithm_string_summary">String Summary ENG</string>
+	<string name="lp_testalgorithm_enum">Enum ENG</string>
+	<string name="lp_testalgorithm_enum_summary">Enum Summary ENG</string>
+	<string name="lp_testalgorithm_enum_christian">Christian ENG</string>
+	<string name="lp_testalgorithm_enum_benjamin">Benjamin ENG</string>
+	<string name="lp_testalgorithm_coordinate">Coordinate ENG</string>
+	<string name="lp_testalgorithm_coordinate_summary">Coordinate Summary ENG</string>
+	<string name="lp_testalgorithm_boolean">Boolean ENG</string>
+	<string name="lp_testalgorithm_boolean_summary">Boolean Summary ENG</string>
+</resources>

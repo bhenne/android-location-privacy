@@ -1,0 +1,76 @@
+<class-diagram version="1.0.11" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.model" project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/model" binary="false">    
+    <position height="1065" width="1669" x="58" y="89"/>    
+    <display autosize="false" stereotype="true"/>  
+  </package>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.model.Coordinate" project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/model/Coordinate.java" binary="false">    
+    <position height="-1" width="-1" x="1412" y="696"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.model.LocationPrivacyApplication" 
+    project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/model/LocationPrivacyApplication.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="446" y="1013"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.model.LocationPrivacyConfiguration" 
+    project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/model/LocationPrivacyConfiguration.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1413" y="314"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" 
+    name="android.locationprivacy.model.AbstractLocationPrivacyAlgorithm" project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/model/AbstractLocationPrivacyAlgorithm.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="444" y="496"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="6">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="7" name="algorithm"/>      
+      <multiplicity id="8" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="9">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="10" name="configuration"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="13" name="coordinateValues"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
