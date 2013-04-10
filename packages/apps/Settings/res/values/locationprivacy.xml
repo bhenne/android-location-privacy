@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- General -->
-    <string name="lp_title"> Location Privacy</string>
+    <string name="lp_title">Location Privacy</string>
     <string name="lp_defaultalgo">Default Algorithm</string>
     <string name="lp_defaultalgo_summary">Change the default algorithm</string>
     <string name="lp_application_heading">Applications</string>
@@ -14,50 +14,49 @@
      <string name="lp_default">Default Algorithm</string>
      
     <!-- Radius -->
-    <string name="lp_radius">Radius</string>
-    <string name="lp_radius_radius">Radius</string>
-	<string name="lp_radius_radius_summary">Radius of the zone where you could be</string>
-	<string name="lp_radius_movement">Distance for new Position</string>
-	<string name="lp_radius_movement_summary">Distance to move in meter to calculate new Position</string>
+    <string name="lp_radius">Random Shift</string>
+    <string name="lp_radius_radius">Maximum Shift</string>
+	<string name="lp_radius_radius_summary">Maximum distance in meters that location is shifted from real location</string>
+	<string name="lp_radius_movement">Distance Condition for Change</string>
+	<string name="lp_radius_movement_summary">Distance in meters that has to be moved before obfuscated location is updated</string>
 	
 	 <!-- Radius with Distance -->
-    <string name="lp_radiusdistance">Radius with Distance</string>
-    <string name="lp_radiusdistance_radius">Radius</string>
-	<string name="lp_radiusdistance_radius_summary">Radius of the zone where you could be</string>
-	<string name="lp_radiusdistance_distance">Distance</string>
-	<string name="lp_radiusdistance_distance_summary">Minimal Distance between you and your obfuscated location</string>
-	<string name="lp_radiusdistance_movement">Distance for new Position</string>
-	<string name="lp_radiusdistance_movement_summary">Distance to move in meter to calculate new Position</string>
+    <string name="lp_radiusdistance">Random Shift with Minimum</string>
+    <string name="lp_radiusdistance_radius">Maximum Change</string>
+	<string name="lp_radiusdistance_radius_summary">Maximum distance in meters that location is shifted from real location</string>
+	<string name="lp_radiusdistance_distance">Minimum Change</string>
+	<string name="lp_radiusdistance_distance_summary">Minimum distance in meters that location is shifted from real location</string>
+	<string name="lp_radiusdistance_movement">Distance Condition for Change</string>
+	<string name="lp_radiusdistance_movement_summary">Distance in meters that has to be moved before obfuscated location is updated</string>
 	
 	 <!-- Fixed Position -->
-	<string name="lp_fixedposition">Fixed Position</string>
-    <string name="lp_fixedposition_position">Position</string>
-    <string name="lp_fixedposition_position_summary">Position where you pretend to be</string>
+	<string name="lp_fixedposition">Fixed Location</string>
+    <string name="lp_fixedposition_position">Location</string>
+    <string name="lp_fixedposition_position_summary">Location where you pretend always to be</string>
     
      <!-- Deactivate Location-->
 	<string name="lp_deactivate">Deactivate Location Access</string>
     
      <!-- GeoReverseGeo -->
-	<string name="lp_georeversegeo">Mapping</string>
-    <string name="lp_georeversegeo_detail">Detail</string>
-    <string name="lp_georeversegeo_detail_summary">Wehre the Position will be mapped</string>
+	<string name="lp_georeversegeo">Address-based Mapping</string>
+    <string name="lp_georeversegeo_detail">Obfuscation detail</string>
+    <string name="lp_georeversegeo_detail_summary">Level of detail used for obfuscation</string>
     <string name="lp_georeversegeo_detail_street">Street</string>
     <string name="lp_georeversegeo_detail_postalcode">Postal Code</string>
     <string name="lp_georeversegeo_detail_city">City</string>
     <string name="lp_georeversegeo_detail_country">Country</string>
     
-     <!-- Fixed Position -->
-	<string name="lp_webservice">Webservice</string>
+     <!-- Web service call -->
+	<string name="lp_webservice">Web service</string>
     <string name="lp_webservice_host">Host</string>
-    <string name="lp_webservice_host_summary">Host-Address of the webservice</string>
+    <string name="lp_webservice_host_summary">Host address of the web service</string>
     <string name="lp_webservice_username">Username</string>
-    <string name="lp_webservice_username_summary">Username to login into the webservice</string>
+    <string name="lp_webservice_username_summary">Username used to login at the web service</string>
     <string name="lp_webservice_secret_password">Password</string>
-    <string name="lp_webservice_secret_password_summary">Password to login into the webservice </string>
+    <string name="lp_webservice_secret_password_summary">Password used to login at the web service </string>
     
-   
 	<!-- Test Algorithm -->
-	<string name="lp_testalgorithm">Testalgorithm</string>
+	<string name="lp_testalgorithm">Test algorithm</string>
 	<string name="lp_testalgorithm_integer">Integer ENG</string>
 	<string name="lp_testalgorithm_integer_summary">Integer Summary ENG</string>
 	<string name="lp_testalgorithm_double">Double ENG</string>
