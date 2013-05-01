@@ -484,7 +484,7 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
             int headerType = getHeaderType(header);
             View view = null;
 
-            if (convertView == null) {
+            if (true /*convertView == null*/) {
                 holder = new HeaderViewHolder();
                 switch (headerType) {
                     case HEADER_TYPE_CATEGORY:
@@ -519,6 +519,8 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
             } else {
                 view = convertView;
                 holder = (HeaderViewHolder) view.getTag();
+                //prevent cross reference
+                holder.switch_ = (Switch) view.findViewById(R.id.switchWidget);
             }
 
             // All view fields must be updated every time, because the view may be recycled
@@ -564,6 +566,7 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
         public void pause() {
             mWifiEnabler.pause();
             mBluetoothEnabler.pause();
+            mLocationPrivacyEnabler.pause();
         }
     }
 

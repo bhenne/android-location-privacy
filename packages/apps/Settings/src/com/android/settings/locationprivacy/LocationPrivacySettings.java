@@ -97,7 +97,6 @@ public class LocationPrivacySettings extends SettingsPreferenceFragment
 	 * @see android.preference.PreferenceFragment#onStop()
 	 */
 	public void onStop() {
-		lpManager.close();
 		lpManager = null;
 		super.onStop();
 	}

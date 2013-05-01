@@ -88,7 +88,7 @@ public class LocationPrivacyManager {
 	/** Context the location privacy framework is running in */
 	private Context context;
 
-	private CryptoDatabase database;
+	private static CryptoDatabase database;
 
 	/** All location obfuscation algorithms */
 	private static HashMap<String, AbstractLocationPrivacyAlgorithm> algorithms;
@@ -126,7 +126,9 @@ public class LocationPrivacyManager {
 			sharedPreference.edit().putInt("iterationCount", iterationCount)
 					.commit();
 		}
-		database = new CryptoDatabase(password, salt, iterationCount, context);
+		if(database == null){
+		      database = new CryptoDatabase(password, salt, iterationCount, context);
+		}
 		if (algorithms == null) {
 			initialize();
 		}
@@ -161,9 +163,7 @@ public class LocationPrivacyManager {
 				getDefaultAlgorithm(), true);
 	}
 
-	public void close() {
-		database.close();
-	}
+	
 
 	/**
      * Obfuscates location. Based on the uid the corresponding algorithm is used.

@@ -72,4 +72,9 @@ public class LocationPrivacyEnabler {
 		resume();
 	}
 
+    public void pause() {
+       mSwitch.setOnClickListener(null);
+        
+    }
+
 }

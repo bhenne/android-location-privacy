@@ -212,7 +212,6 @@ public class LocationPrivacyAppSettings extends SettingsPreferenceFragment
 
 	@Override
 	public void onStop() {
-		lpManager.close();
 		lpManager = null;
 		super.onStop();
 	}

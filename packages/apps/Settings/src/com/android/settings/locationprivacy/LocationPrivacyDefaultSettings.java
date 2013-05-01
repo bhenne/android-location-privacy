@@ -186,7 +186,6 @@ public class LocationPrivacyDefaultSettings extends SettingsPreferenceFragment
 
 	@Override
 	public void onDestroy() {
-		lpManager.close();
 		lpManager = null;
 		super.onDestroy();
 	}
