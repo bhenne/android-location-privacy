@@ -210,11 +210,12 @@ public class LocationPrivacyAppSettings extends SettingsPreferenceFragment
 		createPreferenceHierarchy();
 	}
 
-	@Override
-	public void onStop() {
-		lpManager = null;
-		super.onStop();
-	}
+	
+    @Override
+    public void onDestroy() {
+        lpManager = null;
+        super.onDestroy();
+    }
 
 	@Override
 	public void onResume() {

@@ -173,16 +173,6 @@ public class LocationPrivacyDefaultSettings extends SettingsPreferenceFragment
 		createPreferenceHierarchy();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.preference.PreferenceFragment#onStop()
-	 */
-	public void onStop() {
-		super.onStop();
-
-
-	}
 
 	@Override
 	public void onDestroy() {
