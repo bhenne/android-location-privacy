@@ -484,6 +484,10 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
             int headerType = getHeaderType(header);
             View view = null;
 
+            /** 
+             *  if the views are recycled the view of the bluetooth settings get the same switch-object as 
+             *  the location privacy view. A quick fix is to create everytime a new view-object for every line.
+             */
             if (true /*convertView == null*/) {
                 holder = new HeaderViewHolder();
                 switch (headerType) {
@@ -519,8 +523,6 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
             } else {
                 view = convertView;
                 holder = (HeaderViewHolder) view.getTag();
-                //prevent cross reference
-                holder.switch_ = (Switch) view.findViewById(R.id.switchWidget);
             }
 
             // All view fields must be updated every time, because the view may be recycled
