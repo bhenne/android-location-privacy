@@ -19,62 +19,63 @@ package com.android.settings.locationprivacy;
 
 import android.content.Context;
 import android.locationprivacy.control.LocationPrivacyManager;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 
 /**
- * Provides a switch element for enabling and disabling the
- * location privacy framework
+ * Provides a switch element for enabling and disabling the location privacy
+ * framework
  * 
  * @author Christian Kater
- * 
  */
-public class LocationPrivacyEnabler {
-	private Switch mSwitch;
-	private LocationPrivacyManager mLPService;
+public class LocationPrivacyEnabler implements OnCheckedChangeListener {
+    private Switch mSwitch;
+    private LocationPrivacyManager mLPService;
 
-	private OnClickListener listener = new OnClickListener() {
+    /**
+     * Creates new instance of LocationPrivacyEnabler
+     * 
+     * @param context Context the LocationPrivacyEnabler is running in
+     */
+    public LocationPrivacyEnabler(Context context) {
+        mLPService = new LocationPrivacyManager(context);
+    }
 
-		public void onClick(View v) {
-			mLPService.setStatus(mSwitch.isChecked());
-		}
+    /**
+     * Initializes the switch
+     */
+    public void resume() {
+        if (mSwitch != null) {
+            mSwitch.setChecked(mLPService.getStatus());
+            mSwitch.setOnCheckedChangeListener(this);
+        }
+    }
 
-	};
-
-	/**
-	 * Creates new instance of LocationPrivacyEnabler
-     *
-	 * @param context Context the LocationPrivacyEnabler is running in
-	 */
-	public LocationPrivacyEnabler(Context context) {
-		mLPService = new LocationPrivacyManager(context);
-	}
-
-	/**
-	 * Initializes the switch
-	 */
-	public void resume() {
-		if (mSwitch != null) {
-			mSwitch.setChecked(mLPService.getStatus());
-			mSwitch.setOnClickListener(listener);
-		}
-
-	}
-
-	/**
-	 * Sets a new switch and initializes it.
-     *
-	 * @param aSwitch new switch
-	 */
-	public void setSwitch(Switch aSwitch) {
-		mSwitch = aSwitch;
-		resume();
-	}
+    /**
+     * Sets a new switch and initializes it.
+     * 
+     * @param switch_ new switch
+     */
+    public void setSwitch(Switch switch_) {
+        if (mSwitch == switch_)
+            return;
+        if (mSwitch != null) {
+            mSwitch.setOnCheckedChangeListener(null);
+        }
+        mSwitch = switch_;
+        resume();
+    }
 
     public void pause() {
-       mSwitch.setOnClickListener(null);
-        
+        if (mSwitch != null) {
+            mSwitch.setOnCheckedChangeListener(null);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        mLPService.setStatus(isChecked);
     }
 
 }
