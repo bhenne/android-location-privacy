@@ -96,9 +96,9 @@ public class Webservice extends AbstractLocationPrivacyAlgorithm {
 	public LocationPrivacyConfiguration getDefaultConfiguration() {
 		Map<String, String> stringValues = new HashMap<String, String>();
 		stringValues.put("host",
-				"https://studserv.dcsec.uni-hannover.de:8443/authed/json");
-		stringValues.put("username", "Test");
-		stringValues.put("secret_password", "geheim");
+				"https://priserv.dcsec.uni-hannover.de/authed/json");
+		stringValues.put("username", "myname");
+		stringValues.put("secret_password", "secret");
 		return new LocationPrivacyConfiguration(new HashMap<String, Integer>(),
 				new HashMap<String, Double>(), stringValues,
 				new HashMap<String, ArrayList<String>>(),
