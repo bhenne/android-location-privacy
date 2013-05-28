@@ -16,16 +16,35 @@ http://www.dcsec.uni-hannover.de/
 henne@dcsec.uni-hannover.de
 
 
+== Patch and build it ==
 
-How to create a patch for Android?
+Code development and corresponding patches were built basing on CyanogenMod 9.1
+
+How to create a patch for Android code?
  # Create a diff with the very first commit
- git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 HEAD >patchfile
- # including location changes
- git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 >patchfile
+ git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 HEAD -- build/core/pathmap.mk frameworks/base/ packages/apps/Settings/ >cm91-lpf.patch
+ # including local changes
+ git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 -- build/core/pathmap.mk frameworks/base/ packages/apps/Settings/ >cm91-lpf.patch
 
 How to patch your Android source before brunch?
  cd patchdir
  ./cp.sh androidsourcedir/
  cd androidsourcedir
- patch -p0 < patchdir/patchfile
+ patch -p0 < patchdir/cm91-lpf.patch
 
+How we built CM 9.1 from source (using Ubuntu 12.04)
+ mkdir mycm
+ cd mycm
+ repo init -u git://github.com/CyanogenMod/android.git -b cm-9.1.0
+ repo sync
+ cd vendor/cm
+ ./get-prebuilts
+ cd ../..
+ source build/envsetup.sh
+ breakfast maguro
+ #connect device running original CyanogenMod 9.1 with usb debugging enabled
+ cd device/samsung/maguro/
+ ./extract-files.sh
+ #apply patch now
+ brunch maguro
+ 

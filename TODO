@@ -1,0 +1,22 @@
+open issues
+
+
+* app A is removed
+  Settings is not used, hence configuration is not deleted
+  app B is installed
+  app B gets the uid of old app A
+  app B is used
+  => app B uses location privacy settings of app A
+  => Settings keeps name of app A
+
+  ==> always compare uid and app/package name OR change install/registration
+
+
+* if app is added to configuration, app name in current language is used
+  => name in Settings does not change if language is changed
+
+  ==> save package name on configuration and retrieve app name dynamically
+
+
+* fix switch bug and remove redraw workarond
+  switching location privacy switch in Settings also switches BT
