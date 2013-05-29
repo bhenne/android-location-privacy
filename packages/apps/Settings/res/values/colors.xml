@@ -25,6 +25,7 @@
     <color name="memory_dcim">#793A7F</color>
     <color name="memory_music">#8E562A</color>
     <color name="memory_misc">#7C3030</color>
+    <color name="blue_click">#0680aa</color>
 
     <color name="crypt_keeper_clock_background">#ff9a9a9a</color>
     <color name="crypt_keeper_clock_foreground">#ff666666</color>

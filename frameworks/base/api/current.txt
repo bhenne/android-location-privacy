@@ -10285,6 +10285,116 @@ package android.location {
 
 }
 
+package android.locationprivacyframework.algorithm {
+
+  public abstract class AbstractLocationPrivacyAlgorithm implements android.os.Parcelable {
+    ctor protected AbstractLocationPrivacyAlgorithm(java.lang.String);
+    ctor protected AbstractLocationPrivacyAlgorithm(android.os.Parcel);
+    method public abstract android.location.Location obfuscate(android.location.Location);
+    method public android.locationprivacyframework.model.LocationPrivacyConfiguration getConfiguration();
+    method public abstract android.locationprivacyframework.model.LocationPrivacyConfiguration getDefaultConfiguration();
+    method public java.lang.String getName();
+    method public abstract android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm newInstance();
+    method public void setConfiguration(android.locationprivacyframework.model.LocationPrivacyConfiguration);
+    method public void writeToParcel(android.os.Parcel, int);
+    field protected android.locationprivacyframework.model.LocationPrivacyConfiguration configuration;
+    field protected java.lang.String name;
+  }
+
+  public class Radius extends android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm {
+    ctor public Radius();
+    ctor public Radius(android.os.Parcel);
+    method public android.location.Location obfuscate(android.location.Location);
+    method public int describeContents();
+    method public android.locationprivacyframework.model.LocationPrivacyConfiguration getDefaultConfiguration();
+    method public android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm newInstance();
+  }
+
+  public class TestAlgorithm extends android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm {
+    ctor public TestAlgorithm();
+    method public android.location.Location obfuscate(android.location.Location);
+    method public int describeContents();
+    method public android.locationprivacyframework.model.LocationPrivacyConfiguration getDefaultConfiguration();
+    method public android.locationprivacyframework.algorithm.TestAlgorithm newInstance();
+  }
+
+}
+
+package android.locationprivacyframework.model {
+
+  public class Coordinate implements android.os.Parcelable {
+    ctor public Coordinate(double, double, double);
+    ctor public Coordinate(android.os.Parcel);
+    method public int describeContents();
+    method public double getAltitude();
+    method public double getLatitude();
+    method public double getLongitude();
+    method public void setAltitude(double);
+    method public void setLatitude(double);
+    method public void setLongitude(double);
+    method public void writeToParcel(android.os.Parcel, int);
+    field public static final android.os.Parcelable.Creator CREATOR;
+    field public double altitude;
+    field public double latitude;
+    field public double longitude;
+  }
+
+  public final class LocationPrivacyAlgorithmType extends java.lang.Enum implements android.os.Parcelable {
+    method public int describeContents();
+    method public static android.locationprivacyframework.model.LocationPrivacyAlgorithmType getAlgorithmImplementation(java.lang.String);
+    method public static java.util.List<java.lang.String> getAllAlgorithm();
+    method public android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm getInstance();
+    method public static android.locationprivacyframework.model.LocationPrivacyAlgorithmType valueOf(java.lang.String);
+    method public static final android.locationprivacyframework.model.LocationPrivacyAlgorithmType[] values();
+    method public void writeToParcel(android.os.Parcel, int);
+    enum_constant public static final android.locationprivacyframework.model.LocationPrivacyAlgorithmType TESTALGORITHM;
+  }
+
+  public class LocationPrivacyApplication implements java.io.Serializable {
+    ctor public LocationPrivacyApplication(java.lang.String, java.lang.String, int, boolean, android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm, boolean);
+    method public android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm getAlgorithm();
+    method public int getImage();
+    method public java.lang.String getName();
+    method public java.lang.String getPackageName();
+    method public boolean isDefaultAlgorithm();
+    method public boolean isEnabled();
+    method public void setAlgorithm(android.locationprivacyframework.algorithm.AbstractLocationPrivacyAlgorithm);
+    method public void setDefaultAlgorithm(boolean);
+    method public void setEnabled(boolean);
+    method public void setImage(int);
+    method public void setName(java.lang.String);
+    method public void setPackageName(java.lang.String);
+  }
+
+  public class LocationPrivacyConfiguration implements android.os.Parcelable {
+    ctor public LocationPrivacyConfiguration(java.util.Map<java.lang.String, java.lang.Integer>, java.util.Map<java.lang.String, java.lang.Double>, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, java.util.ArrayList<java.lang.String>>, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, android.locationprivacyframework.model.Coordinate>);
+    ctor public LocationPrivacyConfiguration(android.os.Parcel);
+    method public int describeContents();
+    method public android.locationprivacyframework.model.Coordinate getCoordinate(java.lang.String);
+    method public java.util.Map<java.lang.String, android.locationprivacyframework.model.Coordinate> getCoordinateValues();
+    method public double getDouble(java.lang.String);
+    method public java.util.Map<java.lang.String, java.lang.Double> getDoubleValues();
+    method public java.util.ArrayList<java.lang.String> getEnum(java.lang.String);
+    method public java.util.Map<java.lang.String, java.lang.String> getEnumChoosen();
+    method public java.lang.String getEnumChoosen(java.lang.String);
+    method public java.util.Map<java.lang.String, java.util.ArrayList<java.lang.String>> getEnumValues();
+    method public int getInt(java.lang.String);
+    method public java.util.Map<java.lang.String, java.lang.Integer> getIntValues();
+    method public java.lang.String getString(java.lang.String);
+    method public java.util.Map<java.lang.String, java.lang.String> getStringValues();
+    method public void setCoordinaet(java.lang.String, android.locationprivacyframework.model.Coordinate);
+    method public void setCoordinateValues(java.util.Map<java.lang.String, android.locationprivacyframework.model.Coordinate>);
+    method public void setDouble(java.lang.String, double);
+    method public void setEnum(java.lang.String, java.util.ArrayList<java.lang.String>);
+    method public void setEnumChoosen(java.lang.String, java.lang.String);
+    method public void setInt(java.lang.String, int);
+    method public void setString(java.lang.String, java.lang.String);
+    method public void writeToParcel(android.os.Parcel, int);
+    field public static final android.os.Parcelable.Creator CREATOR;
+  }
+
+}
+
 package android.media {
 
   public class AsyncPlayer {

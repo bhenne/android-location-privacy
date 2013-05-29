@@ -1,0 +1,71 @@
+= Android Location Privacy Framework =
+
+An Android OS extension that integrates Location obfuscation
+ * Adds location obfuscation to Androids location capabilities
+ * Users can select default obfuscation algorithm for all apps
+ * Users can select a different algorithm or configuration for each app
+ * The Framework allows developers easy integration of new algorithms
+
+The base version of the Android Location Privacy Framework was
+implemented within the bachelor thesis of Christian Kater at the
+ Distributed Computing & Security Group
+ Leibniz Universität Hannover, Germany
+The thesis has been advised by Benjamin Henne.
+
+http://www.dcsec.uni-hannover.de/
+henne@dcsec.uni-hannover.de
+
+== Build AOSP 4.0.4 for Samsung Galaxy Nexus (maguro) with Location Privacy Framework ==
+
+This was useful for building:
+ http://forums.androidcentral.com/general-help-how/144804-how-compile-ics-aosp-4-0-3-xoom-gnex-nexus-s.html
+
+Requirements:
+ * repo is used to check out code
+ * adb is needed to extract binaries from phone
+ * Ubuntu 10.04 - newer versions don't compile it
+
+
+mkdir myAOSP
+cd myAOSP
+repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r2
+repo sync
+
+#get binary drivers from Google
+#
+wget https://dl.google.com/dl/android/aosp/broadcom-maguro-imm76d-4ee51a8d.tgz  #WiFi/BT
+wget https://dl.google.com/dl/android/aosp/imgtec-maguro-imm76d-0f59ea74.tgz    #Graphics
+wget https://dl.google.com/dl/android/aosp/samsung-maguro-imm76d-d16591cf.tgz   #GSM
+tar xzf broadcom-maguro-imm76d-4ee51a8d.tgz
+tar xzf imgtec-maguro-imm76d-0f59ea74.tgz
+tar xzf samsung-maguro-imm76d-d16591cf.tgz
+./extract-broadcom-maguro.sh
+./extract-imgtec-maguro.sh
+./extract-samsung-maguro.sh 
+
+#need to get GPS binaries from device (running an 4.0.4 android; tested AOSP and CM 9.1)
+git clone -b ics-plus-aosp https://android.googlesource.com/device/samsung/maguro /tmp/xyz381
+cd vendor/samsung/maguro
+cp /tmp/xyz381/extract-files.sh .
+cp /tmp/xyz381/setup-makefiles.sh .
+./extract-files.sh
+
+cd ../../../../myAOSP
+prebuilt/linux-x86/ccache/ccache -M 50G
+
+#apply patch now
+cd patchdir
+git diff --patch --no-prefix 34c7082a0cee1d2a26133292dd119df4f2ce938c HEAD -- build/core/ frameworks/base/ packages/apps/Settings/ >android-4.0.4_r2.patch
+./cp.sh path/to/myAOSP/
+cd myAOSP
+patch -p0 < patchdir/android-4.0.4_r2.patch
+
+make clobber
+source build/envsetup.sh
+lunch
+#select [8] for full_maguro-userdebug
+make otapackage -j8   #using all 8 cpu cores
+
+#get image from out/target/product/maguro/full_maguro-ota-eng.<...>.zip
+#flash it
+

@@ -1,0 +1,67 @@
+<class-diagram version="1.0.11" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.control" project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/control" binary="false">    
+    <position height="1159" width="1600" x="23" y="19"/>    
+    <display autosize="false" stereotype="true"/>  
+  </package>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.control.LocationPrivacyManager" 
+    project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/control/LocationPrivacyManager.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1232" y="405"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.control.CryptoDatabase" 
+    project="cm9" file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/control/CryptoDatabase.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="376" y="434"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" 
+    name="android.locationprivacy.control.CryptoDatabase.CryptoOpenHelper" project="cm9" 
+    file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/control/CryptoDatabase.java" binary="false">    
+    <position height="-1" width="-1" x="264" y="1028"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="android.locationprivacy.control.CryptoDatabase.CryptoCursor" 
+    project="cm9" file="/cm9/frameworks/base/locationprivacy/java/android/locationprivacy/control/CryptoDatabase.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="657" y="991"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <nesting id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <association id="7">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="8" name="database"/>      
+      <multiplicity id="9" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="10">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </nesting>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
