@@ -1,6 +1,10 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
  *
+ * Location Privacy Framework Extension
+ *  Copyright (C) 2013 Distributed Computing & Security Group,
+ *                     Leibniz Universitaet Hannover, Germany
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,12 +25,15 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentQueryMap;
+import android.locationprivacy.control.LocationPrivacyManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.location.Address;
@@ -186,6 +193,13 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
 
     // for Settings change notification
     private ContentQueryMap mSettings;
+    private LocationPrivacyManager locationPrivacyManager;
+    BroadcastReceiver LPFBReciever = new BroadcastReceiver() {	
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            locationPrivacyManager.updateData();
+        }
+        };
 
     /**
      * A wrapper class holding either an ILocationListener or a PendingIntent to receive
@@ -198,6 +212,8 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
         final HashMap<String,UpdateRecord> mUpdateRecords = new HashMap<String,UpdateRecord>();
         int mPendingBroadcasts;
         String requiredPermissions;
+        int uid;
+        String name;
 
         Receiver(ILocationListener listener) {
             mListener = listener;
@@ -218,6 +234,27 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                         ((Receiver)otherObj).mKey);
             }
             return false;
+        }
+		
+        public void setUid(int uid){
+            this.uid = uid;
+            PackageManager packageManager = mContext.getPackageManager();
+            String[] packages = packageManager .getPackagesForUid(uid);
+            if(packages.length == 0){
+                name = "";
+            } else if(uid == 1000){
+                name = "Android-System";
+            } else {
+                try {
+                    ApplicationInfo info = packageManager.getApplicationInfo(packages[0], 0);
+                    name = packageManager.getApplicationLabel(info).toString();
+                } catch (NameNotFoundException e) {
+                    // Auto-generated catch block
+                    e.printStackTrace();
+                    name = "";
+                    return;
+                }
+            }
         }
 
         @Override
@@ -306,11 +343,14 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                     synchronized (this) {
                         // synchronize to ensure incrementPendingBroadcastsLocked()
                         // is called before decrementPendingBroadcasts()
-                        mListener.onLocationChanged(location);
-                        if (mListener != mProximityListener) {
-                            // call this after broadcasting so we do not increment
-                            // if we throw an exeption.
-                            incrementPendingBroadcastsLocked();
+                        Location calcLoc = locationPrivacyManager.obfuscateLocation(location, "" + uid, name);
+                        if(calcLoc != null){
+                            mListener.onLocationChanged(calcLoc);
+                            if (mListener != mProximityListener) {
+                                // call this after broadcasting so we do not increment
+                                // if we throw an exeption.
+                                incrementPendingBroadcastsLocked();
+                            }
                         }
                     }
                 } catch (RemoteException e) {
@@ -318,16 +358,19 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                 }
             } else {
                 Intent locationChanged = new Intent();
-                locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, location);
+                Location calcLoc = locationPrivacyManager.obfuscateLocation(location, "" + uid, name);
+                locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, calcLoc);
                 try {
                     synchronized (this) {
                         // synchronize to ensure incrementPendingBroadcastsLocked()
                         // is called before decrementPendingBroadcasts()
-                        mPendingIntent.send(mContext, 0, locationChanged, this, mLocationHandler,
-                                requiredPermissions);
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
+                        if(calcLoc != null){
+                            mPendingIntent.send(mContext, 0, locationChanged, this, mLocationHandler, 
+                                    requiredPermissions);
+                            // call this after broadcasting so we do not increment
+                            // if we throw an exeption.
+                            incrementPendingBroadcastsLocked();
+                        }
                     }
                 } catch (PendingIntent.CanceledException e) {
                     return false;
@@ -550,6 +593,8 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
         if (LOCAL_LOGV) {
             Slog.v(TAG, "Constructed LocationManager Service");
         }
+        locationPrivacyManager = new LocationPrivacyManager(mContext);
+        mContext.registerReceiver(LPFBReciever, new IntentFilter("com.android.server.LocationManagerService.locationprivacy"));
     }
 
     void systemReady() {
@@ -1133,8 +1178,10 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
         }
         try {
             synchronized (mLock) {
-                requestLocationUpdatesLocked(provider, minTime, minDistance, singleShot,
-                        getReceiver(listener));
+                Receiver r = getReceiver(listener);
+                r.setUid(Binder.getCallingUid());
+                requestLocationUpdatesLocked(provider, minTime, minDistance, singleShot, 
+                        r);
             }
         } catch (SecurityException se) {
             throw se;
@@ -1171,8 +1218,10 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
         }
         try {
             synchronized (mLock) {
-                requestLocationUpdatesLocked(provider, minTime, minDistance, singleShot,
-                        getReceiver(intent));
+                Receiver r = getReceiver(intent);
+                r.setUid(Binder.getCallingUid());
+                requestLocationUpdatesLocked(provider, minTime, minDistance, singleShot, 
+                        r);
             }
         } catch (SecurityException se) {
             throw se;
@@ -1589,9 +1638,10 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
     public void addProximityAlert(double latitude, double longitude,
         float radius, long expiration, PendingIntent intent) {
         validatePendingIntent(intent);
+        int uid = Binder.getCallingUid();
         try {
             synchronized (mLock) {
-                addProximityAlertLocked(latitude, longitude, radius, expiration, intent);
+                addProximityAlertLocked(latitude, longitude, radius, expiration, intent, uid);
             }
         } catch (SecurityException se) {
             throw se;
@@ -1603,7 +1653,7 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
     }
 
     private void addProximityAlertLocked(double latitude, double longitude,
-        float radius, long expiration, PendingIntent intent) {
+        float radius, long expiration, PendingIntent intent, int uid) {
         if (LOCAL_LOGV) {
             Slog.v(TAG, "addProximityAlert: latitude = " + latitude +
                     ", longitude = " + longitude +
@@ -1627,6 +1677,7 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
         if (mProximityReceiver == null) {
             mProximityListener = new ProximityListener();
             mProximityReceiver = new Receiver(mProximityListener);
+            mProximityReceiver.setUid(uid);
 
             for (int i = mProviders.size() - 1; i >= 0; i--) {
                 LocationProviderInterface provider = mProviders.get(i);
@@ -1746,7 +1797,20 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
         }
         try {
             synchronized (mLock) {
-                return _getLastKnownLocationLocked(provider);
+                int uid = Binder.getCallingUid();
+                String name = "";
+                PackageManager packageManager = mContext.getPackageManager();
+                String[] packages = packageManager .getPackagesForUid(uid);
+                if(packages.length > 0){
+                try {
+                        ApplicationInfo info = packageManager.getApplicationInfo(packages[0], 0);
+                        name = packageManager.getApplicationLabel(info).toString();
+                    } catch (NameNotFoundException e) {
+                        // Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                return locationPrivacyManager.obfuscateLocation(_getLastKnownLocationLocked(provider), "" + uid, name);
             }
         } catch (SecurityException se) {
             throw se;

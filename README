@@ -1,0 +1,48 @@
+= Android Location Privacy Framework =
+
+An Android OS extension that integrates Location obfuscation 
+ * Adds location obfuscation to Androids location capabilities
+ * Users can select default obfuscation algorithm for all apps
+ * Users can select a different algorithm or configuration for each app
+ * The Framework allows developers easy integration of new algorithms
+
+The base version of the Android Location Privacy Framework was 
+implemented within the bachelor thesis of Christian Kater at the
+ Distributed Computing & Security Group
+ Leibniz Universität Hannover, Germany
+The thesis has been advised by Benjamin Henne.
+
+http://www.dcsec.uni-hannover.de/
+henne@dcsec.uni-hannover.de
+
+
+== Patch CyanogenMod 9.1 and build it ==
+
+How to create a patch for Android code?
+ # Create a diff with the very first commit
+ git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 HEAD -- build/core/pathmap.mk frameworks/base/ packages/apps/Settings/ >cm91-lpf.patch
+ # including local changes
+ git diff --patch --no-prefix c2e57d38e3f19d39ffa7e5519eb27a5db4e96271 -- build/core/pathmap.mk frameworks/base/ packages/apps/Settings/ >cm91-lpf.patch
+
+How to patch your Android source before brunch?
+ cd patchdir
+ ./cp.sh androidsourcedir/
+ cd androidsourcedir
+ patch -p0 < patchdir/cm91-lpf.patch
+
+How we built CM 9.1 from source (using Ubuntu 12.04)
+ mkdir mycm
+ cd mycm
+ repo init -u git://github.com/CyanogenMod/android.git -b cm-9.1.0
+ repo sync
+ cd vendor/cm
+ ./get-prebuilts
+ cd ../..
+ source build/envsetup.sh
+ breakfast maguro
+ #connect device running original CyanogenMod 9.1 with usb debugging enabled
+ cd device/samsung/maguro/
+ ./extract-files.sh
+ #apply patch now
+ brunch maguro
+ 

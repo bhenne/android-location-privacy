@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- General -->
+    <string name="lp_title">Standort-Privatsphäre</string>
+    <string name="lp_defaultalgo">Standard-Algorithmus</string>
+    <string name="lp_defaultalgo_summary">Verändere den Standard-Algorithmus</string>
+    <string name="lp_application_heading">Apps</string>
+    <string name="lp_app_title">App-Details</string>
+    <string name="lp_algo">Algorithmus</string>
+    <string name="lp_algo_summary">Wähle einen Algorithmus für die App</string>
+    <string name="lp_configuration">Konfiguration</string>
+    
+    <!-- Default -->
+     <string name="lp_default">Standard-Algorithmus</string>
+     
+    <!--  Deactivate -->
+    <string name="lp_deactivate">Standortzugriff deaktivieren</string>
+     
+    <!-- Radius -->
+    <string name="lp_radius">Verschieben</string>
+    <string name="lp_radius_radius">Maximale Entfernung</string>
+	<string name="lp_radius_radius_summary">Maximale Entfernung in Metern bis zu der sich der verschleierte Ort vom wirklichen unterscheidet</string>
+	<string name="lp_radius_movement">Distanz bis Neu-Berechnung</string>
+	<string name="lp_radius_movement_summary">Notwendige Bewegung in Metern, damit ein neuer verschleierter Ort berechnet wird</string>
+	
+	 <!-- Radius with Distance -->
+    <string name="lp_radiusdistance">Verschieben mit Mindestabstand</string>
+    <string name="lp_radiusdistance_radius">Maximale Entfernung</string>
+	<string name="lp_radiusdistance_radius_summary">Maximale Entfernung in Metern bis zu der sich der verschleierte Ort vom wirklichen unterscheidet</string>
+	<string name="lp_radiusdistance_distance">Mindeste Entfernung</string>
+	<string name="lp_radiusdistance_distance_summary">Minimale Entfernung in Metern zwischen dem verschleierten und dem wirklichen Standort</string>
+	<string name="lp_radiusdistance_movement">Distanz bis Neu-Berechnung</string>
+	<string name="lp_radiusdistance_movement_summary">Notwendige Bewegung in Metern, damit ein neuer verschleierter Ort berechnet wird</string>
+	
+	 <!-- Fixed Position -->
+	<string name="lp_fixedposition">Feste Position</string>
+    <string name="lp_fixedposition_position">Position</string>
+    <string name="lp_fixedposition_position_summary">Position an der du vorgibst immer zu sein</string>
+    
+     <!-- GeoReverseGeo -->
+	<string name="lp_georeversegeo">Adress-basierte Verschleierung</string>
+    <string name="lp_georeversegeo_detail">Detailgrad</string>
+    <string name="lp_georeversegeo_detail_summary">Bis zu welchen Grad an Detail wird verschleiert</string>
+    <string name="lp_georeversegeo_detail_street">Straße</string>
+    <string name="lp_georeversegeo_detail_postalcode">Postleitzahl</string>
+    <string name="lp_georeversegeo_detail_city">Stadt</string>
+    <string name="lp_georeversegeo_detail_country">Land</string>
+    
+     <!-- Webservice-->
+	<string name="lp_webservice">Webservice</string>
+    <string name="lp_webservice_host">Host</string>
+    <string name="lp_webservice_host_summary">Host-Adresse des Webservices</string>
+    <string name="lp_webservice_username">Nutzername</string>
+    <string name="lp_webservice_username_summary">Nutzername zur Anmeldung am Webservice</string>
+    <string name="lp_webservice_secret_password">Passwort</string>
+    <string name="lp_webservice_secret_password_summary">Passwort zur Anmeldung am Webservice</string>
+    
+	<!-- Test Algorithm -->
+	<string name="lp_testalgorithm">Test-Algorithmus</string>
+	<string name="lp_testalgorithm_integer">Integer DE</string>
+	<string name="lp_testalgorithm_integer_summary">Integer Summary DE</string>
+	<string name="lp_testalgorithm_double">Double DE</string>
+	<string name="lp_testalgorithm_double_summary">Double Summary DE</string>
+	<string name="lp_testalgorithm_string">String DE</string>
+	<string name="lp_testalgorithm_string_summary">String Summary DE</string>
+	<string name="lp_testalgorithm_enum">Enum DE</string>
+	<string name="lp_testalgorithm_enum_summary">Enum Summary DE</string>
+	<string name="lp_testalgorithm_enum_christian">Christian DE</string>
+	<string name="lp_testalgorithm_enum_benjamin">Benjamin DE</string>
+	<string name="lp_testalgorithm_coordinate">Coordinate DE</string>
+	<string name="lp_testalgorithm_coordinate_summary">Coordinate Summary DE</string>
+	<string name="lp_testalgorithm_boolean">Boolean DE</string>
+	<string name="lp_testalgorithm_boolean_summary">Boolean Summary DE</string>
+</resources>
