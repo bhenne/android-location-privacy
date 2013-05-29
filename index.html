@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Android Location Privacy Framework - Location obfuscation for Android" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Android Location Privacy Framework</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+ 	  <img id="lpf_banner" src="images/ic_settings_locationprivacy.png" />
+ 	  <a id="forkme_banner" href="https://github.com/bhenne/android-location-privacy">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Android Location Privacy</h1>
+          <h2 id="project_tagline">A location obfuscation framework for Android</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/bhenne/android-location-privacy/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/bhenne/android-location-privacy/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+      <h3>Android Location Privacy Framework</h3>
+
+    <p>Location privacy settings of Android (at least up to 4.2 Jelly Bean) are limited to the option of disabling location use in general, while Apple iOS (since version 6) allows it on a per-app basis. When using location-based services, users always reveal their exact location even to apps that do not need it. Weather forecast apps as well as navigation apps get the most exact location a device can determine. 
+    Mobile privacy research focuses on the recognition and prevention of the disclosure of private data including location, but does not extend to privacy in use cases where users do want to disclose their location.
+    The increasing use of smartphones today entails an increasing use of location-based services as well. Users want to use these services, but have privacy concerns. As many location-based services do not require exact locations, user privacy can be increased by only disclosing location in such detail as required for the respective service to function. 
+    The Android Location Privacy Framework enables users to restrict the accuracy of revealed location data. Having control of location exactness allows its users to achieve the best possible privacy enhancement based on personal requirements.</p>
+
+    <p>The framework can be used by moderately skilled users and is intended to build the base for future research concerning the usability of privacy-enhancing obfuscation algorithms and their parameters in real world mobile scenarios.</p>
+
+	<p>Framework features:</p>
+
+<ul>
+    <li>The framework adds location obfuscation to Android's location capabilities.</li>
+    <li>Users can select a default obfuscation algorithm for all apps.</li>
+    <li>Users can select a different algorithm or configuration for each app.</li>
+    <li>Researchers can add multiple algorithms to test and study them.</li>
+</ul>
+
+<p>The base version of the Android Location Privacy Framework was 
+implemented within the bachelor thesis of C. Kater at the
+ Distributed Computing & Security Group,
+  Leibniz Universität Hannover, Germany.
+ The thesis has been advised by B. Henne.
+ </p>
+
+ <p>Our Android extension has been tested with
+  <ul>
+      <li>CyanogenMod 9.1 (<a href="https://github.com/CyanogenMod/android/tree/cm-9.1.0">code</a>|<a href="https://github.com/bhenne/android-location-privacy/tree/cm-9.1.0">patch</a>)</li>
+      <li>AOSP 4.0.4 (<a href="https://android.googlesource.com/platform/manifest/+/android-4.0.4_r2">code</a>|<a href="https://github.com/bhenne/android-location-privacy/tree/android-4.0.4_r2">patch</a>)</li>
+</p>
+
+<h3>Screenshots</h3>
+<p>These screenshots show how you configure location obfuscation using the framework.</p>
+<img class="screenshot" src="images/Screenshot_2013-03-08-16-55-14.png" alt="Settings app main view" title="Settings app main view">
+<img class="screenshot" src="images/Screenshot_2013-03-13-16-14-54.png" alt="Location privacy settings sub-view" title="Location privacy settings sub-view">
+<img class="screenshot" src="images/Screenshot_2013-05-29-13-32-17.png" alt="Location privacy settings: select default algorithm" title="Location privacy settings: select default algorithm">
+<img class="screenshot" src="images/Screenshot_2013-05-29-13-33-28.png" alt="Location privacy settings: set algorithm parameters" title="Location privacy settings: set algorithm parameters">
+
+<h3>Publications</h3>
+<ol id="pubs">
+    <li>B. Henne, C. Kater, M. Brenner, M. Smith: Selective Cloaking: Nearly Nobody Needs to Know Where Your Droid Exactly Is. In 2013 Eleventh Annual International Conference on Privacy, Security and Trust (PST), Tarragona, Spain, July 10-12 2013, IEEE, to appear.</li>
+</ol>
+
+<h3>Support or Contact</h3>
+
+<p>Feel free to contact the corresponding person <a href="https://github.com/bhenne" class="user-mention">@bhenne</a> at our Group.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Android Location Privacy Framework maintained by <a href="https://github.com/bhenne">bhenne</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
