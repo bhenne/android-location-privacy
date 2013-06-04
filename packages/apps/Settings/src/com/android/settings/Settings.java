@@ -1,6 +1,10 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
  *
+ * Location Privacy Framework Extension
+ *  Copyright (C) 2013 Distributed Computing & Security Group,
+ *                     Leibniz Universitaet Hannover, Germany
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,6 +30,7 @@ import com.android.settings.applications.ManageApplications;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.fuelgauge.PowerUsageSummary;
+import com.android.settings.locationprivacy.LocationPrivacyEnabler;
 import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.vpn2.VpnSettings;
 import com.android.settings.wifi.WifiEnabler;
@@ -625,6 +630,7 @@ public class Settings extends PreferenceActivity
 
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
+        private final LocationPrivacyEnabler mLocationPrivacyEnabler;
         private final ProfileEnabler mProfileEnabler;
 
         private AuthenticatorHelper mAuthHelper;
@@ -643,6 +649,7 @@ public class Settings extends PreferenceActivity
                 return HEADER_TYPE_CATEGORY;
             } else if (header.id == R.id.wifi_settings
                     || header.id == R.id.bluetooth_settings
+                    || header.id == R.id.lp_settings
                     || header.id == R.id.profiles_settings) {
                 return HEADER_TYPE_SWITCH;
             } else {
@@ -687,6 +694,7 @@ public class Settings extends PreferenceActivity
             // Switches inflated from their layouts. Must be done before adapter is set in super
             mWifiEnabler = new WifiEnabler(context, new Switch(context));
             mBluetoothEnabler = new BluetoothEnabler(context, new Switch(context));
+            mLocationPrivacyEnabler = new LocationPrivacyEnabler(context);
             mProfileEnabler = new ProfileEnabler(context, new Switch(context));
         }
 
@@ -697,7 +705,11 @@ public class Settings extends PreferenceActivity
             int headerType = getHeaderType(header);
             View view = null;
 
-            if (convertView == null || headerType == HEADER_TYPE_SWITCH) {
+            /**
+             *  if the views are recycled the view of the bluetooth settings get the same switch-object as
+             *  the location privacy view. A quick fix is to create everytime a new view-object for every line.
+             */
+            if (true /*convertView == null || headerType == HEADER_TYPE_SWITCH*/) {
                 holder = new HeaderViewHolder();
                 switch (headerType) {
                     case HEADER_TYPE_CATEGORY:
@@ -746,6 +758,8 @@ public class Settings extends PreferenceActivity
                         mWifiEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.bluetooth_settings) {
                         mBluetoothEnabler.setSwitch(holder.switch_);
+                    } else if (header.id == R.id.lp_settings) {
+                        mLocationPrivacyEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.profiles_settings) {
                         mProfileEnabler.setSwitch(holder.switch_);
                     }
@@ -784,12 +798,14 @@ public class Settings extends PreferenceActivity
         public void resume() {
             mWifiEnabler.resume();
             mBluetoothEnabler.resume();
+            mLocationPrivacyEnabler.resume();
             mProfileEnabler.resume();
         }
 
         public void pause() {
             mWifiEnabler.pause();
             mBluetoothEnabler.pause();
+            mLocationPrivacyEnabler.pause();
             mProfileEnabler.pause();
         }
     }
