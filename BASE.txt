@@ -1,0 +1,28 @@
+porting Location Privacy Framework to CyanogenMod 10.1 (Android 4.2 Jelly Bean)
+
+base version of modified source files:
+
+build/core:
+commit 3f0610384a2a32e77565b22b9e5ad479ccce8856
+Author: Koushik Dutta <koushd@gmail.com>
+Date:   Tue May 7 14:06:35 2013 -0700
+    Add support for cross compiling Windows tools on Darwin.
+    Change-Id: I71372543e8da02e1d2437d6da7eb46b0a72c9870
+
+frameworks/base:
+commit aa72cf1e4232b6970228303ecea5182694a4834d
+Author: Danesh Mondegarian <daneshm90@gmail.com>
+Date:   Sun May 5 16:28:55 2013 -0400
+    Profiles : Allow nfc override (1/2)
+    Part 2 : http://review.cyanogenmod.org/#/c/37013/
+    Allow user to override nfc state via profiles
+    Request jira : https://jira.cyanogenmod.org/browse/CYAN-989
+    Change-Id: Ief7fa4ab83527f488fbd8c0bc96448a2a2cde6fb
+
+packages/apps/Settings:
+commit 5cb4debe16f4169827c5dcdbfeef5f80c06ad2c7
+Merge: ccf6831 0a55f3a
+Author: Danny Baumann <dannybaumann@web.de>
+Date:   Wed May 29 05:31:35 2013 -0700
+    Merge "ProfilesSettings : Allow nfc override (2/2)" into cm-10.1
+
