@@ -2,10 +2,9 @@ porting Location Privacy Framework to CyanogenMod 10.1 (Android 4.2 Jelly Bean)
 
    +++ work in progress +++
 
-Seems working right now, but have to be checked in more detail.
-Settings is working, obfuscation worked for test apps
-like Lokus free, but not for Maps as in other OS versions.
-For building, see other doc, e.g. those of cm-9.1.0.
+Seems working right now (tested with CM 10.1 rc4), but have to be checked in more detail.
+Settings is working, obfuscation worked for tested apps like Lokus free, but not for Maps as in other OS versions -- those apps using Google Play Services.
+For building, see other docs, e. g. those of branch cm-9.1.0.
 See TODO.txt for things that have to be done. 
 
 

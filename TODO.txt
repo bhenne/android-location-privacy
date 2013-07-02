@@ -6,20 +6,13 @@ done:
 * use packageName in db, but show application label in UI
 
 
-
 todo NEEDED:
 
-* check obfuscation results again
-
 * obfuscate extraLocation of an Location when obfuscating
-  a location. Should use the same algo, values AND random values
+  a location. Should use the same algorithm, values AND random values
   to obfuscate location and its extra location the same way.
 
 * check Proximity and Geofence obfuscation
-
-* fix MapView of fixed location picker
-  it flickers, hangs and wastes cpu, or else only on CM 10.1
-
 
 
 todo maybe:
