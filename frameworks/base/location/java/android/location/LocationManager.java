@@ -251,8 +251,11 @@ public class LocationManager {
         private void _handleMessage(Message msg) {
             switch (msg.what) {
                 case TYPE_LOCATION_CHANGED:
-                    Location location = new Location((Location) msg.obj);
-                    mListener.onLocationChanged(location);
+                	Location tmp = (Location) msg.obj;
+                	if(tmp != null){
+                		Location location = new Location(tmp);
+                        mListener.onLocationChanged(location);
+                	}
                     break;
                 case TYPE_STATUS_CHANGED:
                     Bundle b = (Bundle) msg.obj;

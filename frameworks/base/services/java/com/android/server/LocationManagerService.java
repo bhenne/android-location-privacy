@@ -558,10 +558,14 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                         // synchronize to ensure incrementPendingBroadcastsLocked()
                         // is called before decrementPendingBroadcasts()
                         //mListener.onLocationChanged(new Location(location));
-                        mListener.onLocationChanged(new Location(locationPrivacyManager.obfuscateLocation(location, "" + uid, packageName)));
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
+                    	Location loc = locationPrivacyManager.obfuscateLocation(location, "" + uid, packageName);
+                    	if(loc != null){
+                    		mListener.onLocationChanged(new Location(loc));
+                            // call this after broadcasting so we do not increment
+                            // if we throw an exeption.
+                            incrementPendingBroadcastsLocked();
+                    	}
+                        
                     }
                 } catch (RemoteException e) {
                     return false;
@@ -569,7 +573,10 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
             } else {
                 Intent locationChanged = new Intent();
                 //locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, new Location(location));
-                locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, new Location(locationPrivacyManager.obfuscateLocation(location, "" + uid, packageName)));
+                Location loc = locationPrivacyManager.obfuscateLocation(location, "" + uid, packageName);
+            	if(loc != null){
+            		locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, new Location(loc));
+            	}
                 try {
                     synchronized (this) {
                         // synchronize to ensure incrementPendingBroadcastsLocked()
@@ -1366,11 +1373,21 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
                     Location noGPSLocation = location.getExtraLocation(Location.EXTRA_NO_GPS_LOCATION);
                     if (noGPSLocation != null) {
                     	//return new Location(mLocationFudger.getOrCreate(noGPSLocation));
-                        return new Location(locationPrivacyManager.obfuscateLocation(mLocationFudger.getOrCreate(noGPSLocation), "" + uid, packageName));
+                    	Location loc = locationPrivacyManager.obfuscateLocation(mLocationFudger.getOrCreate(noGPSLocation), "" + uid, packageName);
+                    	if(loc != null){
+                    		return new Location(loc);
+                    	} else {
+                    		return null;
+                    	}
                     }
                 } else {
                 	//return new Location(location);
-                    return new Location(locationPrivacyManager.obfuscateLocation(location, "" + uid, packageName));
+                	Location loc = locationPrivacyManager.obfuscateLocation(location, "" + uid, packageName);
+                	if(loc != null){
+                		return new Location(loc);
+                	} else {
+                		return null;
+                	}
                 }
             }
             return null;
